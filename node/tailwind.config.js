@@ -3,7 +3,7 @@ module.exports = {
   content: ["../*.{html,js}"],
   theme: {
     fontFamily: {
-        elegant: ['test Söhne']
+        elegant: ['Calibre', 'sans-serif'],
     },
     extend: {},
   },
