@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container {
+    @apply grid;
+    @apply gap-8;
+    grid-template-columns: repeat(auto-fill, minmax(16em, 1fr));
+}
+
+iframe {
+    @apply w-full;
+    @apply h-48;
+    @apply rounded-lg;
+}
+
+iframe.active {
+    @apply fixed;
+    @apply top-0;
+    @apply left-0;
+    @apply w-full;
+    @apply h-full;
+}
+
+iframe:hover {
+    @apply shadow-lg;
+    @apply cursor-pointer;
+}
+
+h2:hover {
+    @apply underline;
+    @apply cursor-pointer;
+}
+
+button {
+    @apply fixed;
+    @apply top-0;
+    @apply right-0;
+    @apply py-1;
+    @apply px-2;
+    @apply rounded-lg;
+    @apply bg-white;
+}
+
+button:hover {
+    @apply text-transparent;
+    @apply bg-red-600;
+    text-shadow: 0 0 0 #fff;
+}

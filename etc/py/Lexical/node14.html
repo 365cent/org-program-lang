@@ -1,0 +1,288 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The role of the lexical analyzer in the compiler</TITLE>
+<META NAME="description" CONTENT="The role of the lexical analyzer in the compiler">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="node8.html">
+<LINK REL="next" HREF="node15.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html196"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html194"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html188"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html197"
+  HREF="node15.html">The design of an efficient</A>
+<B>Up:</B> <A NAME="tex2html195"
+  HREF="node8.html">Lexical Analysis</A>
+<B> Previous:</B> <A NAME="tex2html189"
+  HREF="node13.html">More examples</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00022000000000000000">
+The role of the lexical analyzer in the compiler</A>
+</H2> Upon receiving a <EM>get-next-tohen</EM> command from the parser,
+the lexical analyzer reads input characters until it can
+identify the next token.
+
+<DIV ALIGN="CENTER"><A NAME="fig:lexerParser"></A><A NAME="1080"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 19:</STRONG>
+Interaction of Lexical analyzer with parser.</CAPTION>
+<TR><TD><IMG
+ WIDTH="947" HEIGHT="839" BORDER="0"
+ SRC="img81.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{lexerParser.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+The lexical analyzer collects also information about
+tokens into their associated attributes:
+
+<UL>
+<LI>the tokens influence parsing decisions,
+</LI>
+<LI>the attributes influence the translation of tokens.
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>I<SMALL>NTERFACING </SMALL>LEX <SMALL>WITH </SMALL>YACC.</U> One of the main uses of LEX is as a companion to the YACC
+parser-generator.   
+
+<UL>
+<LI>YACC expects to call a routine named <TT>yylex()</TT>
+      to find the next input token.
+</LI>
+<LI>This routine is  supposed  to return the type of 
+      the next token, as well 
+      as putting any associated value in the global 
+      variable <TT>yylval</TT>. 
+</LI>
+<LI>To use LEX with YACC, one specifies the <TT>-d</TT> option 
+      to YACC to instruct it to generate the file
+      <TT>y.tab.h</TT> containing definitions  of  all  the
+      tokens appearing in the YACC input.
+      This file is then included in the LEX scanner.  
+</LI>
+</UL>
+<P>
+<DIV><B>Example  5</B> &nbsp; 
+The file <TT>calculator.y</TT> below specifies
+the <U><SMALL>GRAMMAR</SMALL></U> of the expressions
+of a desk calculator.
+This file can be processed by the YACC program. 
+<PRE>
+%{
+#include &lt;ctype.h&gt;
+#include &lt;stdio.h&gt;
+
+void yyerror(const char *str)
+{
+  fprintf(stderr,"error: %s\n",str);
+}
+
+int yywrap()
+{
+  return 1;
+}
+
+main()
+{
+  yyparse();
+}
+
+
+%}
+
+%token TOK_NUMBER TOK_PLUS TOK_TIMES TOK_MINUS TOK_DIVIDE TOK_LP TOK_RP
+
+%%
+line        : line expr '\n' {printf("%d\n", $2); }
+            | /* empty word */
+            ;
+
+expr        : expr TOK_PLUS term          {$$ = $1 + $3; }
+            | term                  {$$ = $1; }
+
+
+term        : factor TOK_TIMES term        {$$ = $1 * $3; }
+            | factor               {$$ = $1; }
+
+
+factor      : TOK_LP expr TOK_RP        {$$ = $2; }
+            | TOK_NUMBER           {$$ = $1; }
+             ;
+%%
+</PRE> 
+
+<P>
+The file <TT>calculator.l</TT> specifies how the above tokens are detected
+
+<P>
+<PRE>
+%{
+#include "y.tab.h"
+extern int yylval;
+#include &lt;stdlib.h&gt;
+%}
+
+PLUS            [\+]
+MINUS           [\-]
+TIMES           [\*]
+DIVIDE          [/]
+DIGIT           [0-9]
+NUMBER          [0-9]+
+WS              [ \t]*
+LP              "("
+RP              ")"
+RET             [\n]
+
+%%
+
+{WS}            {
+                /* eat up white space */
+                }
+{NUMBER}        {
+                yylval = atoi( yytext ); 
+                return TOK_NUMBER;
+                }
+{PLUS}          {
+                return TOK_PLUS;
+                }
+{TIMES}         {
+                return TOK_TIMES;
+                }
+{MINUS}         {
+                return TOK_MINUS;
+                }
+{DIVIDE}        {
+                return TOK_DIVIDE;
+                }
+{LP}            {
+                return TOK_LP;
+                }
+{RP}            {
+                return TOK_RP;
+                }
+.               {
+                }
+{RET}           {
+                return yytext[0];
+                }
+</PRE>
+
+<P>
+The corresponding calculator is built and run as follows:
+
+<P>
+<PRE>
+[moreno@iguanodon yacc]$ yacc -d src/calculator.y
+yacc: 16 shift/reduce conflicts
+[moreno@iguanodon yacc]$ flex src/calculator.l 
+[moreno@iguanodon yacc]$ gcc lex.yy.c y.tab.c -ll -o calculator
+[moreno@iguanodon yacc]$ ./calculator 
+1 + 3
+4
+2 * 4
+8
+(2 + 3) * 6
+30
+(2 + 3) * (4 + 5)
+45
+</PRE></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>A<SMALL>BOUT THE SEPARATION OF THE LEXER FROM THE PARSER.</SMALL></U>  
+<UL>
+<LI><U>S<SMALL>IMPLIFICATION OF DESIGN.</SMALL></U> If the lexical analyzer 
+      has removed comments and white space, 
+      then the parser's computations will be simpler. 
+</LI>
+<LI><U>E<SMALL>FFICIENCY.</SMALL></U> It is easier
+     to optimize and maintain simple little  components than a large 
+     sophisticated one.
+</LI>
+<LI><U>P<SMALL>ORTABILITY.</SMALL></U> If the lexical analyzer is the only
+      part of the compiler which has to worry about the input file
+      (alphabetic peculiarities) and its support then the 
+      compiler portability will be enhanced.
+</LI>
+</UL>
+Other possible tasks of the lexical analyzer:
+
+<UL>
+<LI>Correlating error messages from the compiler to the source pogram
+      Indeed, the lexical analyzer may be the only component of the compiler
+      aware of line numbers in the source pogram.
+</LI>
+<LI>Macro expansion. Indeed, the tokens associated with a macro
+      can be precomputed.
+</LI>
+</UL>
+
+<P>
+<HR>
+<A NAME="tex2html196"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html194"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html188"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html197"
+  HREF="node15.html">The design of an efficient</A>
+<B>Up:</B> <A NAME="tex2html195"
+  HREF="node8.html">Lexical Analysis</A>
+<B> Previous:</B> <A NAME="tex2html189"
+  HREF="node13.html">More examples</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

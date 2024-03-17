@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Finite Automata.</TITLE>
+<META NAME="description" CONTENT="Finite Automata.">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="previous" HREF="node4.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node6.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html98"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html96"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html90"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html99"
+  HREF="node6.html">Languages recognized by finite automata</A>
+<B>Up:</B> <A NAME="tex2html97"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html91"
+  HREF="node4.html">Non-deterministic Finite Automata with instantaneous</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00014000000000000000">
+Finite Automata.</A>
+</H2> Because any non-deterministic finite automaton (with or without 
+instantaneous transitions) can be replaced by a deterministic
+finite automaton recognizing the same language, from now on
+we will just say <EM>finite automaton</EM> (FA for short) instead of
+DFA, NFA or NFAIT. In practice, we will use
+
+<UL>
+<LI>NFAs or NFAITs for designing an automaton on the paper and then
+</LI>
+<LI>DFAs for implementing it on computer.
+</LI>
+</UL>
+Indeed, NFAs and NFAITs are easier to manipulate
+but DFAs are closer to computer programs.
+Finally we will make the following simplification 
+in the notations for NFAIT:
+we will denote the non-instaneous transition function
+and
+the <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-transition function 
+with the same letter.
+More precisely, let 
+<!-- MATH
+ $({\Sigma}, S, I, T, {\delta}, {\tau})$
+ -->
+(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">,<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$">) be a NFAIT.
+We define for every <I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\delta}({s,{\varepsilon}}) \ = \ {\tau}(s)
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I>,<IMG
+ WIDTH="26" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$\displaystyle \varepsilon$">)&nbsp; = &nbsp;<IMG
+ WIDTH="29" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img47.png"
+ ALT="$\displaystyle \tau$">(<I>s</I>)</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(2)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+With this convention we can give an unified definition
+for DFA, NFA or NFAIT.
+
+<P>
+<U>A <SMALL>FINITE AUTOMATON</SMALL></U> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+is a 5-uple <!-- MATH
+ $({\Sigma}, S, I, T, {\delta})$
+ -->
+(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) where
+
+<UL>
+<LI><I>S</I> is a finite set, called the <EM>set of states</EM> of the FA,
+</LI>
+<LI><I>I</I> anf <I>T</I> are non-empty subsets of <I>S</I>,
+      called the sets of the <EM>initial states</EM> and <EM>accepting states</EM>
+      of the FA, respectively,
+</LI>
+<LI><IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> is a map from <!-- MATH
+ $S \times ({\Sigma} \cup \{ {{\varepsilon}} \})$
+ -->
+<I>S</I>&#215;(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> {<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">})
+      to 2<SUP>S</SUP>, called the transition function of the FA.
+</LI>
+</UL>
+A non-empty word <!-- MATH
+ $w = x_1 x_2 \cdots x_n$
+ -->
+<I>w</I> = <I>x</I><SUB>1</SUB><I>x</I><SUB>2</SUB><SUP> ... </SUP><I>x</I><SUB>n</SUB> with length <I>n</I> is recognized by
+the FA <!-- MATH
+ $({\Sigma}, S, I, T, {\delta})$
+ -->
+(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) if there exist states
+<!-- MATH
+ $s_1, s_2, \cdots, s_{n-1} \in S$
+ -->
+<I>s</I><SUB>1</SUB>, <I>s</I><SUB>2</SUB>,<SUP> ... </SUP>, <I>s</I><SUB>n-1</SUB> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> such that
+
+<OL>
+<LI>the state <I>s</I><SUB>1</SUB> is an initial state,
+</LI>
+<LI>the state <I>s</I><SUB>i+1</SUB> belongs to <!-- MATH
+ ${\delta}(s_i,x_i)$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I><SUB>i</SUB>, <I>x</I><SUB>i</SUB>)
+      for <!-- MATH
+ $i = 1 \cdots {n-1}$
+ -->
+<I>i</I> = 1<SUP> ... </SUP><I>n</I>-1,
+</LI>
+<LI>the state <I>s</I><SUB>n-1</SUB> is an accepting state.
+</LI>
+</OL>
+The empty word <!-- MATH
+ $w = {{\varepsilon}}$
+ -->
+<I>w</I> = <IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$"> is recognized by the above FA if 
+
+<UL>
+<LI>either <!-- MATH
+ $I \cap F \neq \emptyset$
+ -->
+<I>I</I> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$ \cap$"> <I>F</I> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$">
+</LI>
+<LI>or there exists an initial state <I>s</I> such that <!-- MATH
+ ${\delta}(s,{{\varepsilon}})$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I>,<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">)
+      is an accepting state.
+</LI>
+</UL>
+
+<P>
+<HR>
+<A NAME="tex2html98"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html96"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html90"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html99"
+  HREF="node6.html">Languages recognized by finite automata</A>
+<B>Up:</B> <A NAME="tex2html97"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html91"
+  HREF="node4.html">Non-deterministic Finite Automata with instantaneous</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,809 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Non-deterministic Finite Automata with instantaneous transitions </TITLE>
+<META NAME="description" CONTENT="Non-deterministic Finite Automata with instantaneous transitions ">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node5.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html88"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html86"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html80"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html89"
+  HREF="node5.html">Finite Automata.</A>
+<B>Up:</B> <A NAME="tex2html87"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html81"
+  HREF="node3.html">Non-deterministic Finite Automata</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00013000000000000000">
+Non-deterministic Finite Automata with instantaneous transitions </A>
+</H2> 
+<P>
+<U>NFA <SMALL>WITH INSTANTANEOUS TRANSITIONS.</SMALL></U>  A non-deterministic finite automaton with 
+instantaneous transitions
+(or <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-transitions) consists of six things:
+
+<UL>
+<LI>an input alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">,
+</LI>
+<LI>a finite set <I>S</I> whose elements are called <EM>states</EM>,
+</LI>
+<LI>a set <!-- MATH
+ $I\subseteq S$
+ -->
+<I>I</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>S</I> of distinguished states, called <EM>      initial states</EM>,
+</LI>
+<LI>a set <!-- MATH
+ $F \subseteq S$
+ -->
+<I>F</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>S</I> of distinguished states, called <EM>      accepting states</EM>,
+</LI>
+<LI>a function <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> from <!-- MATH
+ $S \times {\Sigma}$
+ -->
+<I>S</I>&#215;<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      to 2<SUP>S</SUP>, thus every state-symbol couple 
+      is mapped by <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> to a subset of <I>S</I>,
+</LI>
+<LI>a function <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$"> mapping each state of <I>S</I> 
+      to a subset of <I>S</I>
+</LI>
+</UL>
+such that <!-- MATH
+ $({\Sigma}, S, I, T, \delta)$
+ -->
+(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) is a NFA.
+The functions <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> and <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$"> are called
+the <EM>non-instaneous transition function</EM>
+and
+the <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-<EM>transition function</EM> 
+(or the <EM>instaneous transition function</EM>).
+Such an automaton will be called a NFAIT or an <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-NFA, for short.
+
+<DIV ALIGN="CENTER"><A NAME="fig:DFAandNFAIT-1"></A><A NAME="291"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 7:</STRONG>
+A non-deterministic finite automaton with instantaneous transitions.</CAPTION>
+<TR><TD><IMG
+ WIDTH="767" HEIGHT="420" BORDER="0"
+ SRC="img31.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{DFAandNFAIT-1.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>I<SMALL>NSTANTANEOUS TRANSITIONS.</SMALL></U>           
+<P>
+Observe that
+
+<UL>
+<LI>The goal of the function <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$"> is to describe transitions
+from one state to others without reading any letter.
+One can view also these <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-transitions from one state
+to others as transitions obtained after reading the empty word
+<!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">.
+</LI>
+<LI>In the transition graph of a NFAIT
+      the <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-transitions are indicated by edges 
+      (from one state to another) labeled by <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">.
+</LI>
+</UL>
+
+<DIV ALIGN="CENTER"><A NAME="fig:1epsilonAutomatonFor4"></A><A NAME="303"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 8:</STRONG>
+A NFAIT
+accepting <!-- MATH
+ $L_1 \ \cup \ L_2 \ \cup \ L_3 \ \cup \ L_4.$
+ -->
+<I>L</I><SUB>1</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>2</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>3</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>4</SUB>.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1197" HEIGHT="750" BORDER="0"
+ SRC="img32.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{1epsilonAutomatonFor4.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE LANGUAGE ACCEPTED BY A </SMALL>NFAIT.</U> For <!-- MATH
+ $A \subseteq S$
+ -->
+<I>A</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>S</I> we define the <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-closure of 
+<I>A</I> as the set of the states that can be reached from a 
+state  of <I>A</I> by reading the empty word <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">.
+The <!-- MATH
+ ${{\varepsilon}}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-closure of <I>A</I> is denoted by <!-- MATH
+ $\overline{{\tau}}(A)$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>)
+and is formally defined by Algorithm&nbsp;<A HREF="node4.html#algo:e-cloture">2</A>.
+<P>
+<DIV><B>Algorithm  2</B> &nbsp; 
+  
+<BR><A NAME="algo:e-cloture"></A><DL COMPACT>
+<DT>1</DT>
+<DD><I>toSee</I> := <I>A</I>;
+</DD>
+<DT>2</DT>
+<DD><!-- MATH
+ $\overline{{\tau}}(A)$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>) := <I>A</I>; 
+</DD>
+<DT>3</DT>
+<DD><B>while</B> <!-- MATH
+ $toSee \neq \emptyset$
+ -->
+<I>toSee</I> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"> <B>repeat</B> 
+<DL COMPACT>
+<DT>3.1</DT>
+<DD><I>s</I> := <B>first</B>(<I>toSee</I>); <I>toSee</I> := <B>rest</B>(<I>toSee</I>); 
+</DD>
+<DT>3.2</DT>
+<DD><B>for</B> <!-- MATH
+ $s' \in {\tau}(s)$
+ -->
+<I>s'</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$">(<I>s</I>) <B>repeat</B> 
+<DL COMPACT>
+<DT>3.2.1</DT>
+<DD><B>if</B> <!-- MATH
+ $(s' \notin toSee)$
+ -->
+(<I>s'</I> <IMG
+ WIDTH="34" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ \notin$"><I>toSee</I>) <B>and</B> <!-- MATH
+ $(s' \notin \overline{{\tau}}(A))$
+ -->
+(<I>s'</I> <IMG
+ WIDTH="34" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ \notin$"><IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>)) <B>then</B> <I>toSee</I> := <B>cons</B>(<I>s'</I>, <I>toSee</I>); 
+</DD>
+</DL>
+</DD>
+<DT>3.3</DT>
+<DD><!-- MATH
+ $\overline{{\tau}}(A)$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>) := <B>cons</B>(<!-- MATH
+ $s,\overline{{\tau}}(A)$
+ -->
+<I>s</I>,<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>)); 
+</DD>
+</DL>
+</DD>
+<DT>4</DT>
+<DD><B>return</B>(<!-- MATH
+ $\overline{{\tau}}(A)$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>A</I>))
+</DD>
+</DL></DIV><P></P>
+
+<P>
+For two states <I>s</I> and <I>s'</I>, and for a word <I>w</I>
+we define the relation <!-- MATH
+ $s \stackrel{w}{\rightarrow} s'$
+ -->
+<I>s</I><IMG
+ WIDTH="66" HEIGHT="47" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$ \;\stackrel{{w}}{{\rightarrow}}\;$"><I>s'</I>
+by induction on the length | <I>w</I>| of <I>w</I>:
+ 
+<UL>
+<LI>if  <!-- MATH
+ $w = \varepsilon$
+ -->
+<I>w</I> = <IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$"> we have  <!-- MATH
+ $s \stackrel{w}{\rightarrow} s'$
+ -->
+<I>s</I><IMG
+ WIDTH="66" HEIGHT="47" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$ \;\stackrel{{w}}{{\rightarrow}}\;$"><I>s'</I>
+        for every  <!-- MATH
+ $s' \in \overline{{\tau}}(\{s\})$
+ -->
+<I>s'</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">({<I>s</I>}),
+</LI>
+<LI>if <I>w</I> = <I>vx</I> where <I>v</I> is a word and <I>x</I> is a letter, we have
+        <!-- MATH
+ $s \stackrel{vx}{\rightarrow} s'''$
+ -->
+<I>s</I><IMG
+ WIDTH="66" HEIGHT="47" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$ \;\stackrel{{vx}}{{\rightarrow}}\;$"><I>s'''</I>
+        if there exist <I>s'</I>, <I>s''</I> such that <!-- MATH
+ $s \stackrel{v}{\rightarrow} s'$
+ -->
+<I>s</I><IMG
+ WIDTH="66" HEIGHT="47" ALIGN="BOTTOM" BORDER="0"
+ SRC="img36.png"
+ ALT="$ \;\stackrel{{v}}{{\rightarrow}}\;$"><I>s'</I>,
+        <!-- MATH
+ $s'' \in {\delta}(s',x)$
+ -->
+<I>s''</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s'</I>, <I>x</I>) and <!-- MATH
+ $s''' \in \overline{{\tau}}(\{s''\})$
+ -->
+<I>s'''</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">({<I>s''</I>}).
+ 
+</LI>
+</UL>
+a word <I>w</I> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> is accepted (or recognized)
+by the NFAIT <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> if there exists an initial
+state <I>i</I> and a final state <I>f</I> such that <!-- MATH
+ $i \stackrel{w}{\rightarrow} f$
+ -->
+<I>i</I><IMG
+ WIDTH="66" HEIGHT="47" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$ \;\stackrel{{w}}{{\rightarrow}}\;$"><I>f</I>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>F<SMALL>ROM A </SMALL>NFAIT <SMALL>TO A </SMALL>DFA <SMALL>ACCEPTING THE SAME LANGUAGE.</SMALL></U> 
+<P>
+<P>
+<DIV><B>Theorem  2</B> &nbsp; 
+Let <!-- MATH
+ ${\cal A} = ({\Sigma},S,I,T,\delta,\tau)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">,<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img30.png"
+ ALT="$ \tau$">)
+be a NFAIT and let <I>L</I> be the language 
+accepted by <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">.
+Then there exists a DFA <!-- MATH
+ ${\overline{\cal A}}$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="43" ALIGN="BOTTOM" BORDER="0"
+ SRC="img37.png"
+ ALT="$ \overline{{\cal A}}$"> which accepts <I>L</I> too.</DIV><P></P>
+
+<P>
+To construct such an <!-- MATH
+ ${\overline{\cal A}}$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="43" ALIGN="BOTTOM" BORDER="0"
+ SRC="img37.png"
+ ALT="$ \overline{{\cal A}}$"> one proceeds as in 
+Algorithm&nbsp;<A HREF="node3.html#algo:derterminisation">1</A> with the following
+two modifications.
+
+<UL>
+<LI>The initial state is <!-- MATH
+ $\overline{{\tau}}(I)$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>I</I>) 
+instead of <!-- MATH
+ $\overline{I}$
+ -->
+<IMG
+ WIDTH="28" HEIGHT="45" ALIGN="BOTTOM" BORDER="0"
+ SRC="img20.png"
+ ALT="$ \overline{{I}}$">.
+</LI>
+<LI>The transition <!-- MATH
+ ${\Delta}(A,x)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(<I>A</I>, <I>x</I>) is defined by:
+<!-- MATH
+ \begin{displaymath}
+{\Delta}(A,x) \ = \ \overline{{\tau}}(\{ s' \, |
+                    \, (\exists s \in A) \ (s' \in {\delta}(s,x)) \}).
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<IMG
+ WIDTH="39" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img38.png"
+ ALT="$\displaystyle \Delta$">(<I>A</I>, <I>x</I>)&nbsp; = &nbsp;<IMG
+ WIDTH="29" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$\displaystyle \overline{{{\tau}}}$">({<I>s'</I>&nbsp;|&nbsp;(<IMG
+ WIDTH="30" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$\displaystyle \exists$"><I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>A</I>)&nbsp;(<I>s'</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I>, <I>x</I>))}).
+</DIV><P></P>
+</LI>
+</UL>
+The resulting algorithm is called again the <EM>subset algorithm.</EM> 
+Figure&nbsp;<A HREF="node4.html#fig:DFAandNFAIT-3">9</A> shows a DFA accepting the same language
+as the NFAIT of Figure&nbsp;<A HREF="node4.html#fig:DFAandNFAIT-1">7</A>. This DFA is computed
+by means of the subset algorithm.
+Let us describe the construction of the transition table of this DFA.
+<DL COMPACT>
+<DT><B>1.</B></DT>
+<DD>The initial state is the 
+           <!-- MATH
+ $\overline{{\tau}}(I) = \overline{{\tau}}(1) = 134$
+ -->
+<IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(<I>I</I>) = <IMG
+ WIDTH="29" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \overline{{{\tau}}}$">(1) = 134.
+           The transitions from it are  <!-- MATH
+ ${\Delta}(134,a)=2$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(134, <I>a</I>) = 2,  
+                                        <!-- MATH
+ ${\Delta}(134,b)=\emptyset$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(134, <I>b</I>) = <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"> 
+                                        <!-- MATH
+ ${\Delta}(134,c)=\emptyset$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(134, <I>c</I>) = <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$">.
+           This shows that <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"> and 2 are states of the output DFA.
+           The <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"> has to be understood as the <EM>error-state</EM>.
+           If we do not need to produce a complete DFA 
+           then we can discard this <EM>error-state</EM>.
+</DD>
+<DT><B>2.</B></DT>
+<DD>The transition from state 2 are  
+          <!-- MATH
+ ${\Delta}(2,a)=2$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(2, <I>a</I>) = 2, 
+          <!-- MATH
+ ${\Delta}(2,b)=1234$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(2, <I>b</I>) = 1234
+          <!-- MATH
+ ${\Delta}(2,c)=1234$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(2, <I>c</I>) = 1234.
+          This shows that 1234 is a state of the output DFA.
+</DD>
+<DT><B>3.</B></DT>
+<DD>The transition from state 1234 are 
+          <!-- MATH
+ ${\Delta}(1234,a)=2$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(1234, <I>a</I>) = 2, 
+          <!-- MATH
+ ${\Delta}(1234,b)=1234$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(1234, <I>b</I>) = 1234
+          <!-- MATH
+ ${\Delta}(1234,c)=1234$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img25.png"
+ ALT="$ \Delta$">(1234, <I>c</I>) = 1234.
+</DD>
+<DT><B>4.</B></DT>
+<DD>The final states of this DFA are its states 
+                which contain at least one of the final states
+                of the input NFA. Hence the final states are
+                134 and 1234.
+                Therefore we obtain the following transition table.
+</DD>
+</DL>
+<TABLE CELLPADDING=3 BORDER="1">
+<TR VALIGN="BASELINE"><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="LEFT"><I>a</I></TD>
+<TD ALIGN="LEFT"><I>b</I></TD>
+<TD ALIGN="LEFT"><I>c</I></TD>
+</TR>
+<TR VALIGN="BASELINE"><TD ALIGN="LEFT">134</TD>
+<TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"></TD>
+<TD ALIGN="LEFT"><IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$"></TD>
+</TR>
+<TR VALIGN="BASELINE"><TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT">1234</TD>
+<TD ALIGN="LEFT">1234</TD>
+</TR>
+<TR VALIGN="BASELINE"><TD ALIGN="LEFT">1234</TD>
+<TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT">1234</TD>
+<TD ALIGN="LEFT">1234</TD>
+</TR>
+</TABLE>
+
+<DIV ALIGN="CENTER"><A NAME="fig:DFAandNFAIT-3"></A><A NAME="401"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 9:</STRONG>
+From a NFAIT to a DFA accepting the same language and 
+produced by the subset algorithm.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1182" HEIGHT="653" BORDER="0"
+ SRC="img43.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{DFAandNFAIT-3.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>R<SMALL>EMARKS ABOUT THE </SMALL>NFAIT-<SMALL>TO-</SMALL>DFA <SMALL>CONSTRUCTION.</SMALL></U>    
+<UL>
+<LI>If the input NFAIT (of the subset algorithm) has <I>q</I>
+      states then the output DFA has <!-- MATH
+ ${\cal O}(2^q)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img44.png"
+ ALT="$ \cal {O}$">(2<SUP>q</SUP>) states.
+</LI>
+<LI>However the states of the DFA computed by this
+      algorithm have the following property:
+      they can all be reached on some input word.
+      In other words, none of these computed states is useless.
+</LI>
+<LI>In practice, the number of reachable states 
+      (of the output DFA) is much smaller
+      than the above exponential upper bound.
+</LI>
+<LI>However the DFA constructed by the above algorithm
+      is not necessarily minimal: it is possible
+      that the number of states can be further reduced.
+      Figure&nbsp;<A HREF="node4.html#fig:1minimalDFAFor4">10</A> shows a DFA 
+      recognizing the same language as the DFA
+      of Figure&nbsp;<A HREF="node2.html#fig:1automatonFor4">4</A> but using
+      6 states instead of 9.
+</LI>
+</UL>
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:1minimalDFAFor4"></A><A NAME="412"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 10:</STRONG>
+A minimal DFA
+accepting <!-- MATH
+ $L_1 \ \cup \ L_2 \ \cup \ L_3 \ \cup \ L_4.$
+ -->
+<I>L</I><SUB>1</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>2</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>3</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>4</SUB>.</CAPTION>
+<TR><TD><IMG
+ WIDTH="858" HEIGHT="786" BORDER="0"
+ SRC="img45.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{1minimalDFAFor4.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<HR>
+<A NAME="tex2html88"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html86"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html80"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html89"
+  HREF="node5.html">Finite Automata.</A>
+<B>Up:</B> <A NAME="tex2html87"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html81"
+  HREF="node3.html">Non-deterministic Finite Automata</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

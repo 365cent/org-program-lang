@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>More examples</TITLE>
+<META NAME="description" CONTENT="More examples">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="previous" HREF="node12.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node14.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html186"
+  HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html184"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html180"
+  HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html187"
+  HREF="node14.html">The role of the lexical</A>
+<B>Up:</B> <A NAME="tex2html185"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html181"
+  HREF="node12.html">How the input is matched</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00021400000000000000">
+More examples</A>
+</H3>  
+<P>
+<U>A <SMALL>FRENCH-TO-JAVANESE TRANSLATER.</SMALL></U>  
+<P>
+<PRE>
+[moreno@iguanodon lex]$ more src/french2javanese.l 
+%s CR
+VOWEL       [Aa]|[Ee]|[Ii]|[Oo]|[Uu]|[Yy]
+CONSONANT   [B-Db-dF-Hf-hJ-Nj-nP-Tp-tV-Xv-xZz]
+
+%%
+
+&lt;CR&gt;{VOWEL}        {BEGIN 0; printf("%s","av"); ECHO;}
+{CONSONANT}        {ECHO; BEGIN CR;}
+%%
+[moreno@iguanodon lex]$ make french2javanese.out
+[moreno@iguanodon lex]$ ./bin/french2javanese 
+Bonjour chers etudiants                     
+Bavonjavour chavers avetavudaviants
+Est-ce que le cours est interessant aujourd'hui ?
+avEst-cave qavue lave cavours avest avintaveravessavant avaujavourd'havui ?
+</PRE>
+Observe that the last line above starts with <TT>avEst</TT>.
+Can you explain why&nbsp;?
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>A<SMALL>N ENGLISH-TO-FRENCH TRANSLATER FOR THE </SMALL>P<SMALL>ASCAL</SMALL> <SMALL>LANGUAGE.</SMALL></U>  Our aim is also to
+
+<UL>
+<LI>remove extra white space but maintain identation,
+</LI>
+<LI>capitalize keywords.
+</LI>
+</UL>
+
+<P>
+<PRE>
+[moreno@iguanodon lex]$ more test/pascal2pascal.test 
+program p;
+
+var i,j : integer;
+
+begin 
+   i := 23;
+   j := i + i;  
+end.
+
+[moreno@iguanodon lex]$ more src/pascal2pascal.l
+%{
+/* need this for the call to atof() below */
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+
+FILE *fic;
+
+
+%}
+
+PLUS        [\+]
+MINUS       [\-]
+TIMES       [\*]
+BY          [/]
+ASSIGN      :=
+BINARYOP    {PLUS}|{MINUS}|{TIMES}|{BY}|{ASSIGN}
+SEPARATOR   [,:;\.]
+PROGRAM     [Pp][Rr][Oo][Gg][Rr][Aa][Mm]
+VAR         [Vv][Aa][Rr]
+IF          [Ii][Ff]
+THEN        [Tt][Hh][Ee][Nn]
+ELSE        [Ee][Ll][Ss][Ee]
+BEGIN       [Bb][Ee][Gg][Ii][Nn]
+END         [Ee][Nn][Dd]
+WHILE       [Ww][Hh][Ii][Ll][Ee]
+FOR         [Ff][Oo][Rr]
+DO          [Dd][Oo]
+TO          [Tt][Oo]
+FUNCTION    [Ff][Uu][Nn][Cc][Tt][Ii][Oo][Nn]
+PROCEDURE   [Pp][Rr][Oo][Cc][Ee][Dd][Uu][Rr][Ee]
+LETTER      [A-Za-z]
+DIGIT       [0-9]
+ID          {LETTER}({LETTER}|{DIGIT})*
+INTEGER     ({PLUS}|{MINUS})?{DIGIT}+
+REAL        {INTEGER}(\.({DIGIT})*)?([eE]{INTEGER})?
+COMMENT     "{"[^}\n]*"}"
+%%
+
+{INTEGER}   {
+            printf( "An integer: %s (%d)\n", yytext,
+                    atoi( yytext ) );
+            fprintf(fic, "%d", atoi(yytext));
+            }
+
+{REAL}      {
+            printf( "A float: %s (%g)\n", yytext,
+                    atof( yytext ) );
+            fprintf(fic, "%g", atof(yytext));
+            }
+
+{IF}        convert_IF();
+
+{THEN}      convert_THEN();
+
+{ELSE}      convert_ELSE();
+
+{BEGIN}     convert_BEGIN();
+
+{END}       convert_END();
+
+{VAR}       convert_VAR();
+
+{FOR}       convert_FOR();
+
+{DO}        convert_DO();
+
+{TO}        convert_TO();
+
+{WHILE}     convert_WHILE();
+
+{PROCEDURE} convert_PROCEDURE();
+
+{FUNCTION}  convert_FUNCTION();
+
+{PROGRAM}   convert_PROGRAM();
+
+{ID}                        {        
+            printf( "An identifier: %s\n", yytext );
+            fprintf(fic, "%s", yytext );
+            }
+
+{SEPARATOR} {
+           printf( "A separator: %s\n", yytext );
+           fprintf(fic, "%s", yytext );
+           }
+
+{BINARYOP}   {
+           printf( "A binary operator: %s\n", yytext );
+           fprintf(fic, "%s", yytext );
+           }
+
+{COMMENT}     {
+                  printf( "A comment : %s\n", yytext );
+                  fprintf(fic, "%s", yytext );
+           }
+
+^[ \t]+          fprintf(fic, "%s", yytext );
+[ \t]+           fprintf(fic, "%s", " ");
+[\n]+            fprintf(fic, "%s", "\n");
+
+
+
+.           printf( "Unrecognized character: %s\n", yytext );
+
+%%
+
+keyword_message() { printf( "A keyword: %s\n", yytext );}
+
+convert_IF() { keyword_message(); fprintf(fic, "%s", "SI"); }
+convert_THEN() { keyword_message(); fprintf(fic, "%s", "ALORS"); }
+convert_ELSE() { keyword_message(); fprintf(fic, "%s", "SINON"); }
+convert_BEGIN() { keyword_message(); fprintf(fic, "%s", "DEBUT") ; }
+convert_END() { keyword_message(); fprintf(fic, "%s", "FIN") ; }
+convert_VAR() { keyword_message(); fprintf(fic, "%s", "VAR") ; }
+convert_FOR() { keyword_message(); fprintf(fic, "%s", "POUR") ; }
+convert_DO() { keyword_message(); fprintf(fic, "%s", "FAIRE") ; }
+convert_TO() { keyword_message(); fprintf(fic, "%s", "A") ; }
+convert_WHILE() { keyword_message(); fprintf(fic, "%s", "TANT QUE") ; }
+convert_PROCEDURE() { keyword_message(); fprintf(fic, "%s", "PROCEDURE") ; }
+convert_FUNCTION() { keyword_message(); fprintf(fic, "%s", "FONCTION") ; }
+convert_PROGRAM() { keyword_message(); fprintf(fic, "%s", "PROGRAMME") ; }
+
+
+
+
+int main() {
+
+     fic = fopen("/tmp/pascal","w");
+     
+     yylex();
+
+     fclose(fic);
+     return 0;
+}
+</PRE>
+
+<P>
+<PRE>
+[moreno@iguanodon lex]$ more test/pascal2pascal.test 
+program p;
+
+var i,j : integer;
+
+begin 
+   i := 23;
+   j := i + i;  
+end.
+
+moreno@iguanodon lex]$ ./bin/pascal2pascal &lt; test/pascal2pascal.test
+A keyword: program
+An identifier: p
+A separator: ;
+A keyword: var
+An identifier: i
+A separator: ,
+An identifier: j
+A separator: :
+An identifier: integer
+A separator: ;
+A keyword: begin
+n identifier: i
+A binary operator: :=
+An integer: 23 (23)
+A separator: ;
+An identifier: j
+A binary operator: :=
+An identifier: i
+A binary operator: +
+An identifier: i
+A separator: ;
+A keyword: end
+A separator: .
+[moreno@iguanodon lex]$ more /tmp/pascal 
+PROGRAMME p;
+VAR i,j : integer;
+DEBUT 
+   i := 23;
+   j := i + i; 
+FIN.
+</PRE>
+
+<P>
+<U>A <SMALL>SCANNER FOR </SMALL>C/J<SMALL>AVA SOURCE FILES</SMALL></U>  We aim to count the number of
+
+<UL>
+<LI>comment lines without source code
+</LI>
+<LI>white lines
+</LI>
+<LI>lines containing source code.
+</LI>
+</UL>
+
+<P>
+<PRE>
+[moreno@iguanodon lex]$ more src/C_source_scanner.l
+%{
+int comments = 0, code = 0, whiteSpace = 0;
+%}
+
+%s CS
+
+COMMENT            "/*".*"*/"
+COMMENTLINE        ^[ \t]*{COMMENT}[ \t]*\n
+WHITELINE          ^[ \t]*\n 
+CODESTARTINGLINE   .+({COMMENT}.+)*.*\n 
+CODEENDINGLINE     .*({COMMENT}.+)*.+\n
+CODELINE           {CODESTARTINGLINE}|{CODEENDINGLINE}
+
+STARTCOMMENTLINE   ^[ \t]*"/*" 
+
+%%
+
+{COMMENTLINE}      {comments++;
+                   /* comment on a single line */ 
+                   }
+{WHITELINE}        {whiteSpace++;}
+{CODELINE}         {code++;}
+
+{STARTCOMMENTLINE} {BEGIN CS;
+                   /* enter comment eating state */ 
+                   }
+&lt;CS&gt;"*/"        {BEGIN 0;}
+&lt;CS&gt;\n          {comments++ ;}
+
+%%
+ 
+main()    {
+               yylex();
+               printf("code: %d, comments: %d, white space: %d\n", code, comments, whiteSpace);
+              return 0;
+}
+
+[moreno@iguanodon lex]$ make C_source_scanner.out  
+[moreno@iguanodon lex]$ ./bin/C_source_scanner &lt; src/C_source_scanner.l
+code: 26, comments: 2, white space: 8
+[moreno@iguanodon lex]$
+</PRE>
+
+<P>
+<HR>
+<A NAME="tex2html186"
+  HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html184"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html180"
+  HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html187"
+  HREF="node14.html">The role of the lexical</A>
+<B>Up:</B> <A NAME="tex2html185"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html181"
+  HREF="node12.html">How the input is matched</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

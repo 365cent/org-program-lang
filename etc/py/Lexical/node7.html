@@ -1,0 +1,347 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Regular expressions</TITLE>
+<META NAME="description" CONTENT="Regular expressions">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node8.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html116"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html114"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html110"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html117"
+  HREF="node8.html">Lexical Analysis</A>
+<B>Up:</B> <A NAME="tex2html115"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html111"
+  HREF="node6.html">Languages recognized by finite automata</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00016000000000000000">
+Regular expressions</A>
+</H2> 
+<P>
+<U>R<SMALL>EGULAR EXPRESSION.</SMALL></U> Let <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> be an alphabet 
+such that none of the symbols (, ), |, <SUP> <TT>*</TT> </SUP> belongs
+to <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+A <EM>regular expression</EM> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+
+<UL>
+<LI>is a word <I>r</I> over the alphabet <!-- MATH
+ ${\Sigma} \cup \{ (, ), |, {}^{\ast}\}$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> {(,),|,<SUP> <TT>*</TT> </SUP>},
+</LI>
+<LI>denoting (= associated with) a language <I>L</I>(<I>r</I>) over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> and
+</LI>
+<LI>defined by the following inductive rules.
+<DL COMPACT>
+<DT>(R1)</DT>
+<DD>The empty word <!-- MATH
+ ${\varepsilon}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$"> is a regular expression over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting the language <!-- MATH
+ $\{ {\varepsilon} \}$
+ -->
+{<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">}.
+</DD>
+<DT>(R2)</DT>
+<DD>For every <!-- MATH
+ $x \in {\Sigma}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> the letter <I>x</I> is a regular expression 
+      over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> denoting the language {<I>x</I>}.
+</DD>
+<DT>(R3)</DT>
+<DD>Let <I>r</I> and <I>s</I> be regular expressions over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting languages <I>L</I>(<I>r</I>) and <I>L</I>(<I>s</I>) respectively. Then,
+
+<UL>
+<LI>(<I>r</I>)|(<I>s</I>) is a regular expression over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting the language <!-- MATH
+ $L(r) \, {\cup} \, L(s)$
+ -->
+<I>L</I>(<I>r</I>)&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I>(<I>s</I>),
+</LI>
+<LI>(<I>r</I>)(<I>s</I>) is a regular expression over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting the language <!-- MATH
+ $L(r) . L(s)$
+ -->
+<I>L</I>(<I>r</I>).<I>L</I>(<I>s</I>),
+</LI>
+<LI><!-- MATH
+ $(r)^{\ast}$
+ -->
+(<I>r</I>)<SUP> <TT>*</TT> </SUP> is a regular expression over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting the language <!-- MATH
+ $(L(r))^{\ast}$
+ -->
+(<I>L</I>(<I>r</I>))<SUP> <TT>*</TT> </SUP>,
+</LI>
+<LI>(<I>r</I>) is a regular expression over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      denoting the language <I>L</I>(<I>r</I>) (i.e., one can add parentheses).
+</LI>
+</UL>
+</DD>
+</DL>
+</LI>
+</UL>
+<P>
+<DIV><B>Remark  2</B> &nbsp; 
+Unnecessary parentheses can be avoided in regular expressions
+if we adopt the following conventions:
+<DL COMPACT>
+<DT>1.</DT>
+<DD>the unary operator <SUP> <TT>*</TT> </SUP> has the highest precedence
+          and is left associative,
+</DD>
+<DT>2.</DT>
+<DD>concatenation has the second the highest precedence
+          and is left associative,
+</DD>
+<DT>3.</DT>
+<DD>the operator | has the lowest precedence
+          and is left associative.
+</DD>
+</DL>
+With these conventions the regular expression 
+<!-- MATH
+ $(a)|((b)*(c))$
+ -->
+(<I>a</I>)|((<I>b</I>)*(<I>c</I>)) is <I>a</I>| <I>b</I>*<I>c</I>.</DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>R<SMALL>EGULAR LANGUAGES.</SMALL></U> Let <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> be an alphabet 
+(such that none of the symbols (, ), |, <SUP> <TT>*</TT> </SUP> belongs to it).
+A language <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$ \cal {L}$"> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> is <EM>regular</EM>
+if there exists a regular expression <I>r</I> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+denoting <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$ \cal {L}$">, that is if <!-- MATH
+ ${\cal L} = L(r)$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$ \cal {L}$"> = <I>L</I>(<I>r</I>).
+
+<P>
+It follows from Kleene's theorem that a language
+is recognized by FA iff it is regular.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>F<SMALL>ROM A REGULAR EXPRESSION TO A FINITE AUTOMATON.</SMALL></U> We present now a method that for any regular expression <I>r</I>
+constructs a FA <!-- MATH
+ ${\cal A}(r)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">(<I>r</I>) recognizing <I>L</I>(<I>r</I>).
+
+<UL>
+<LI>The FA <!-- MATH
+ ${\cal A}(r)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">(<I>r</I>) is built inductively by following the structure of the 
+      regular expression <I>r</I>.
+</LI>
+<LI>At each step of the algorithm a FA is produced from previous ones
+      starting with  FA of <!-- MATH
+ $R_0({\Sigma})$
+ -->
+<I>R</I><SUB>0</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">) and ending with <!-- MATH
+ ${\cal A}(r)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">(<I>r</I>).
+</LI>
+<LI>Every intermediate FA <!-- MATH
+ ${\cal A} = ({\Sigma}, S, I, F, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">)
+      produced by the algorithm
+      is <U><SMALL>NORMALIZED</SMALL></U>.
+</LI>
+</UL>
+The method is quite natural.
+<DL COMPACT>
+<DT>1.</DT>
+<DD>We first parse <I>r</I> into its constituent subexpressions.
+</DD>
+<DT>2.</DT>
+<DD>We construct NFAs for each letter or <!-- MATH
+ ${\varepsilon}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$"> in <I>r</I>
+          by applying the above rules (R1) and (R2).
+</DD>
+<DT>3.</DT>
+<DD>Then guided by the syntaxic structure of the regular expression
+          <I>r</I>, we combine the NFAs using rules (R3) and
+          Figures&nbsp;<A HREF="node6.html#fig:sumOfNormalizedFA">15</A>,
+<A HREF="node6.html#fig:productOfNormalizedFA">16</A>,
+<A HREF="node6.html#fig:starOfNormalizedFA">18</A>.
+</DD>
+</DL>
+This method is called <EM>Thompson's algorithm</EM>.
+<P>
+<DIV><B>Remark  3</B> &nbsp; 
+The number of states of the FA produced by the 
+Thompson's algorithm is upper bounded by 2| <I>r</I>|
+where | <I>r</I>| is the number of symbols and operators in 
+the regular expression <I>r</I>.</DIV><P></P>
+
+<P>
+<HR>
+<A NAME="tex2html116"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html114"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html110"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html117"
+  HREF="node8.html">Lexical Analysis</A>
+<B>Up:</B> <A NAME="tex2html115"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html111"
+  HREF="node6.html">Languages recognized by finite automata</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

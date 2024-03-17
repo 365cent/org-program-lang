@@ -1,0 +1,520 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Deterministic Finite Automata</TITLE>
+<META NAME="description" CONTENT="Deterministic Finite Automata">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node3.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html68"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html66"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html60"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html69"
+  HREF="node3.html">Non-deterministic Finite Automata</A>
+<B>Up:</B> <A NAME="tex2html67"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html61"
+  HREF="node1.html">Finite Automata</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00011000000000000000">
+Deterministic Finite Automata</A>
+</H2> 
+<P>
+<U>A<SMALL>LPHABET, </SMALL>S<SMALL>TRING, </SMALL>L<SMALL>ANGUAGE.</SMALL></U>  We call an <EM>alphabet</EM> any finite set of symbols.
+Let <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> be an alphabet.
+A <EM>string</EM> or <EM>word</EM> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> is any finite sequence
+of symbols from <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+The empty string is denoted by <!-- MATH
+ ${\epsilon}$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \epsilon$">.
+A <EM>language</EM> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> is any set of strings over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Note that the above definitions do not ascribe any meaning
+to the strings of the language.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>D<SMALL>ETERMINISTIC </SMALL>F<SMALL>INITE </SMALL>A<SMALL>UTOMATA.</SMALL></U>  A deterministic finite automaton (DFA) consists of five things:
+
+<UL>
+<LI>an input alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">,
+</LI>
+<LI>a finite set <I>S</I> whose elements  are called <EM>states</EM>,
+</LI>
+<LI>a distinguished state <!-- MATH
+ $\  s_0 \in S$
+ -->
+&nbsp;<I>s</I><SUB>0</SUB> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I>, called <EM>starting state</EM>,
+</LI>
+<LI>a set <!-- MATH
+ $F \subseteq S$
+ -->
+<I>F</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>S</I> of distinguished states, called <EM>      accepting states</EM> (or <EM>final states</EM>),
+</LI>
+<LI>a partial function <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> from <!-- MATH
+ $S \times {\Sigma}$
+ -->
+<I>S</I>&#215;<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      to <I>S</I> called the <EM>transition function</EM>
+      (hence for every state-symbol couple either
+              <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> maps it to a symbol or 
+              <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> is not defined for this couple).
+</LI>
+</UL>
+It is convenient 
+
+<UL>
+<LI>to say ``let  <!-- MATH
+ ${\cal A} = ({\Sigma}, S, s_0, F, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>s</I><SUB>0</SUB>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">)
+be a DFA'' for ``let  <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> be a DFA with alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">,
+set of states <I>S</I>, starting state <I>s</I><SUB>0</SUB>, set of accepting states <I>F</I>
+and transition function <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">.``
+</LI>
+<LI>to represent a DFA by a <EM>transition diagram</EM>
+using the rules shown on Figure&nbsp;<A HREF="node2.html#fig:automataNotation.eps">1</A>.
+</LI>
+</UL>
+
+<DIV ALIGN="CENTER"><A NAME="fig:automataNotation.eps"></A><A NAME="93"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+Pictorial notations for finite automata.</CAPTION>
+<TR><TD><IMG
+ WIDTH="926" HEIGHT="495" BORDER="0"
+ SRC="img8.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{automataNotation.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>L<SMALL>ANGUAGE RECOGNIZED BY A </SMALL>DFA.</U>  A DFA accepts an input string if when beginning the computation
+in the starting state, after reading the entire string, the 
+automaton is in an accepting state.
+
+<DIV ALIGN="CENTER"><A NAME="fig:4automatas.eps"></A><A NAME="99"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+Some finite automata accepting some lexical tokens.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1132" HEIGHT="925" BORDER="0"
+ SRC="img9.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{4automatas.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+The set of the strings recognized by a DFA <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> is called
+the <EM>language recognized by the DFA</EM> <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> 
+and will be denoted by <!-- MATH
+ ${\cal L}({\cal A}).$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img10.png"
+ ALT="$ \cal {L}$">(<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">).
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>RANSITION TABLE.</SMALL></U> A straightforward way to implement a DFA is to represent
+the transition function <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> as a <EM>transition table.</EM>
+This table has a row for each state <I>s</I> and a column for
+each input symbol <I>a</I> .
+The intersection of row <I>s</I> and column <I>a</I> contains <!-- MATH
+ ${\delta}(s,a).$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I>, <I>a</I>).
+Figure&nbsp;<A HREF="node2.html#fig:transitionTable">3</A> shows the transition diagram
+and the transition table of an automaton.
+
+<DIV ALIGN="CENTER"><A NAME="fig:transitionTable"></A><A NAME="114"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3:</STRONG>
+Transition table for a DFA.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1067" HEIGHT="372" BORDER="0"
+ SRC="img11.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{transitionTable.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+A DFA can be easily converted to a program
+to look for tokens specified by it.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>C<SMALL>OMPLETE </SMALL>DFA.</U> A DFA <!-- MATH
+ ${\cal A} = ({\Sigma}, S, s_0, F, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>s</I><SUB>0</SUB>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">)
+is said <EM>complete</EM> if for every <I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> and for 
+every <!-- MATH
+ $a \in {\Sigma}$
+ -->
+<I>a</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> the transition <!-- MATH
+ ${\delta}(s,a)$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I>, <I>a</I>)
+is defined.
+
+<P>
+The automaton of Figure&nbsp;<A HREF="node2.html#fig:transitionTable">3</A> is complete
+whereas none of the automata of Figure&nbsp;<A HREF="node2.html#fig:4automatas.eps">2</A> are.
+
+<P>
+As a model for a computer program, it is desirable for a DFA
+to be complete. 
+To transform a non-complete DFA <!-- MATH
+ ${\cal A} = ({\Sigma}, S, s_0, F, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>s</I><SUB>0</SUB>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">)
+into a complete DFA one needs only 
+
+<OL>
+<LI>to add a new state to <I>S</I>, say <I>E</I>
+(for <EM>error</EM>) and then 
+</LI>
+<LI>for every <!-- MATH
+ $(s, a) \in S \times {\Sigma}$
+ -->
+(<I>s</I>, <I>a</I>) <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I>&#215;<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+      such that <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> was not defined
+      at this couple, define <!-- MATH
+ ${\delta}(s,a) = E$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I>, <I>a</I>) = <I>E</I>.
+</LI>
+</OL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>DFA <SMALL>RECOGNIZING THE UNION OF SEVERAL LANGUAGES.</SMALL></U>  Each of the four DFA in Figure&nbsp;<A HREF="node2.html#fig:4automatas.eps">2</A>
+recognizes a simple language over the alphabet
+<P></P>
+<DIV ALIGN="RIGHT"><!-- MATH
+ \begin{equation}
+\htmlimage{}
+{\Sigma}  \ \ =  \ \ [a \cdots z] \ \cup \ [A \cdots Z] \ \cup \ [0 \cdots 9]
+                  \ \cup \ \{. \}
+\end{equation}
+ -->
+<IMG
+ WIDTH="1398" HEIGHT="86" ALIGN="LEFT"
+ SRC="img12.png"
+ ALT="\begin{equation}
+{\Sigma} \ \ = \ \ [a \cdots z] \ \cup \ [A \cdots Z] \ \cup \ [0 \cdots 9]
+\ \cup \ \{. \}
+\end{equation}"></DIV>
+<BR CLEAR="ALL">
+<P><P></P>
+Let us denote these languages by <!-- MATH
+ $L_1, L_2, L_3, L_4.$
+ -->
+<I>L</I><SUB>1</SUB>, <I>L</I><SUB>2</SUB>, <I>L</I><SUB>3</SUB>, <I>L</I><SUB>4</SUB>.
+
+<UL>
+<LI><I>L</I><SUB>1</SUB> is the language reduced to the single world <I>if</I>,
+</LI>
+<LI><I>L</I><SUB>2</SUB> is the language of the identifiers made from 
+      letters and digits and starting with a letter,
+</LI>
+<LI><I>L</I><SUB>3</SUB> is the language of the integer numbers,
+</LI>
+<LI><I>L</I><SUB>4</SUB> is the language of the floating point numbers.
+</LI>
+</UL>
+It is desirable to build a DFA that would recognize
+the language <!-- MATH
+ $L_1 \ \cup \ L_2 \ \cup \ L_3 \ \cup \ L_4.$
+ -->
+<I>L</I><SUB>1</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>2</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>3</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>4</SUB>.
+In other words, one would like to combine the four
+transition diagrams in Figure&nbsp;<A HREF="node2.html#fig:4automatas.eps">2</A>
+specifying the various patterns into a single 
+transition diagram.
+This is a non-trivial task. Here are some difficulties.
+
+<UL>
+<LI>Consider a word <I>w</I><SUB>i</SUB> which belongs to some <I>L</I><SUB>i</SUB> and
+     a word <!-- MATH
+ $w_j \neq {{\varepsilon}}$
+ -->
+<I>w</I><SUB>j</SUB> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$"> such that <I>w</I><SUB>i</SUB><I>w</I><SUB>j</SUB> belongs to some <I>L</I><SUB>j</SUB>.
+     For instance with <I>w</I><SUB>i</SUB> = 123 and <!-- MATH
+ $w_j = . 456$
+ -->
+<I>w</I><SUB>j</SUB> = .456
+     should the combined DFA accept <I>w</I><SUB>i</SUB> or <I>w</I><SUB>i</SUB><I>w</I><SUB>j</SUB>?
+     The rule is to choose the longest initial substring
+     that can match a pattern (think of integers).
+     Hence <I>w</I><SUB>i</SUB><I>w</I><SUB>j</SUB> is chosen.
+</LI>
+<LI>It may happen that <I>w</I><SUB>i</SUB><I>w</I><SUB>j</SUB> (the longest match) belongs to 
+      several <I>L</I><SUB>j</SUB>.
+      Hence we need to define some priorities.
+      For instance the word <I>if</I> belongs to <I>L</I><SUB>1</SUB> and <I>L</I><SUB>2</SUB>.
+      However we want the word <I>if</I> to be a reserved word,
+      not an identifier.
+      So we have to replace <I>L</I><SUB>2</SUB> by <!-- MATH
+ $L_2 \setminus L_1.$
+ -->
+<I>L</I><SUB>2</SUB> <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$ \setminus$"> <I>L</I><SUB>1</SUB>.
+</LI>
+</UL>
+
+<DIV ALIGN="CENTER"><A NAME="fig:1automatonFor4"></A><A NAME="152"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 4:</STRONG>
+An automaton 
+accepting <!-- MATH
+ $L_1 \ \cup \ L_2 \ \cup \ L_3 \ \cup \ L_4$
+ -->
+<I>L</I><SUB>1</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>2</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>3</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;<I>L</I><SUB>4</SUB>
+and solving the difficulties mentionned above.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1218" HEIGHT="1017" BORDER="0"
+ SRC="img16.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{1automatonFor4.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<B>N.B.</B> From now on and for simplicity, 
+we do not consider capital letters
+any more in our example (Figure&nbsp;<A HREF="node2.html#fig:4automatas.eps">2</A>).
+In other words we reduce <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> to the
+union of <!-- MATH
+ $[a \cdots z]$
+ -->
+[<I>a</I><SUP> ... </SUP><I>z</I>], <!-- MATH
+ $[0 \cdots 9]$
+ -->
+[0<SUP> ... </SUP>9] and {.}.
+
+<P>
+<HR>
+<A NAME="tex2html68"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html66"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html60"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html69"
+  HREF="node3.html">Non-deterministic Finite Automata</A>
+<B>Up:</B> <A NAME="tex2html67"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html61"
+  HREF="node1.html">Finite Automata</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

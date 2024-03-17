@@ -1,0 +1,1387 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Languages recognized by finite automata</TITLE>
+<META NAME="description" CONTENT="Languages recognized by finite automata">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="node1.html">
+<LINK REL="next" HREF="node7.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html108"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html106"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html100"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html109"
+  HREF="node7.html">Regular expressions</A>
+<B>Up:</B> <A NAME="tex2html107"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html101"
+  HREF="node5.html">Finite Automata.</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00015000000000000000">
+Languages recognized by finite automata</A>
+</H2> 
+<P>
+<U>L<SMALL>ANGUAGES RECOGNIZED BY </SMALL>FA.</U> Let <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> be an alphabet.
+A language <I>L</I> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> is <EM>recognized by FA</EM>
+if there exists a finite automaton <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">
+such that <I>L</I> is the language recognized by <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE PUNPING LEMMA.</SMALL></U>          A natural question is
+
+<UL>
+<LI>are all languages over  <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> recognized by FA?
+</LI>
+<LI>and if no can we characterize those languages which
+      are recognized by FA?
+</LI>
+</UL>
+To answer the first part of this  question 
+we start with the following remark.
+
+<P>
+<P>
+<DIV><A NAME="prop:finiteLanguagesAreRational"><B>Proposition  1</B></A> &nbsp; 
+Every language over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> with a finite number
+of words is recognized by FA.</DIV><P></P>
+
+<P>
+Indeed let <!-- MATH
+ $L = \{ w_1, w_2, \ldots, w_n \}$
+ -->
+<I>L</I> = {<I>w</I><SUB>1</SUB>, <I>w</I><SUB>2</SUB>,..., <I>w</I><SUB>n</SUB>} be such
+a language. We can easily make FAs <!-- MATH
+ ${\cal A}_1$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>1</SUB>, 
+<!-- MATH
+ ${\cal A}_1$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>1</SUB>, ...<!-- MATH
+ ${\cal A}_n$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>n</SUB> recognizing the languages
+<!-- MATH
+ $L_1 = \{ w_1 \}$
+ -->
+<I>L</I><SUB>1</SUB> = {<I>w</I><SUB>1</SUB>}, <!-- MATH
+ $L_2 = \{ w_1 \}$
+ -->
+<I>L</I><SUB>2</SUB> = {<I>w</I><SUB>1</SUB>}, ..., <!-- MATH
+ $L_n = \{ w_n \}$
+ -->
+<I>L</I><SUB>n</SUB> = {<I>w</I><SUB>n</SUB>},
+respectively.
+Then by using <!-- MATH
+ ${\varepsilon}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">-transitions
+we can construct a single FA <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> recognizing 
+
+<P>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+L \ \ =  \  \  L_1 \ {\cup} \  L_2 \ {\cup} \ \cdots \ {\cup} \ L_n.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>L</I>&nbsp; = &nbsp;&nbsp;<I>L</I><SUB>1</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> &nbsp;<I>L</I><SUB>2</SUB>&nbsp; <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> &nbsp;<SUP> ... </SUP>&nbsp; <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> &nbsp;<I>L</I><SUB>n</SUB>.</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(3)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+Therefore, if a language <I>L</I> is not recognized by FA
+then it must contain an infinite number of words.
+This leads us to the following remark.
+
+<P>
+<P>
+<DIV><A NAME="prop:infiniteRationalLanguagesHaveCircuits"><B>Proposition  2</B></A> &nbsp; 
+Let <I>L</I> be a language recognized by FA
+and with an infinite number of words.
+Let <!-- MATH
+ ${\cal A} = ({\Sigma}, S, I, T, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>T</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) 
+be a DFA accepting <I>L</I>.
+Then <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> possesses a <EM>circuit</EM>.
+In other words, there exist a positive integer <I>n</I>
+together with <I>n</I> states <!-- MATH
+ $s_1, s_2, \ldots, s_n$
+ -->
+<I>s</I><SUB>1</SUB>, <I>s</I><SUB>2</SUB>,..., <I>s</I><SUB>n</SUB>
+and <I>n</I> - 1 letters <!-- MATH
+ $x_1, x_2, \ldots, x_{n-1}$
+ -->
+<I>x</I><SUB>1</SUB>, <I>x</I><SUB>2</SUB>,..., <I>x</I><SUB>n-1</SUB>
+(not necessarily pairwise different) such that 
+<DL COMPACT>
+<DT>(<I>i</I>)</DT>
+<DD><!-- MATH
+ $s_{i+1} = {\delta} (s_i, x_i)$
+ -->
+<I>s</I><SUB>i+1</SUB> = <IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>s</I><SUB>i</SUB>, <I>x</I><SUB>i</SUB>) for every <!-- MATH
+ $i = 1 \cdots n-1$
+ -->
+<I>i</I> = 1<SUP> ... </SUP><I>n</I> - 1,
+</DD>
+<DT>(<I>ii</I>)</DT>
+<DD><!-- MATH
+ $s_i \neq s_j$
+ -->
+<I>s</I><SUB>i</SUB> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <I>s</I><SUB>j</SUB> for <!-- MATH
+ $i, j = 1 \cdots n-1$
+ -->
+<I>i</I>, <I>j</I> = 1<SUP> ... </SUP><I>n</I> - 1 and <I>i</I> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <I>j</I>,
+</DD>
+<DT>(<I>iii</I>)</DT>
+<DD><I>s</I><SUB>1</SUB> = <I>s</I><SUB>n</SUB>.
+</DD>
+</DL></DIV><P></P>
+
+<P>
+Indeed, let <I>s</I><SUB>1</SUB> be the initial state,
+<I>q</I> be the number of states of <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">
+and <I>p</I> the number of letters.
+Since <I>L</I> is infinite,
+there exists a word <!-- MATH
+ $w = x_1 \cdots x_{\ell}$
+ -->
+<I>w</I> = <I>x</I><SUB>1</SUB><SUP> ... </SUP><I>x</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$"></SUB> 
+in <I>L</I> with lenght <!-- MATH
+ ${\ell} > q$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ \ell$"> &gt; <I>q</I>.
+Recognizing <I>w</I> requires at least <I>q</I> + 1 transitions:
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+s_2 = {\delta}(s_1, x_1), s_3 = {\delta}(s_3, x_3), \ldots
+s_{\ell} = {\delta}(s_{{\ell}-1}, x_{{\ell}-1}), 
+s_{{\ell}+1} = {\delta}(s_{\ell}, x_{\ell}).
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>s</I><SUB>2</SUB> = <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I><SUB>1</SUB>, <I>x</I><SUB>1</SUB>), <I>s</I><SUB>3</SUB> = <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I><SUB>3</SUB>, <I>x</I><SUB>3</SUB>),...<I>s</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$"></SUB> = <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$">-1</SUB>, <I>x</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$">-1</SUB>), <I>s</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$">+1</SUB> = <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>s</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$"></SUB>, <I>x</I><SUB><IMG
+ WIDTH="20" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img49.png"
+ ALT="$\scriptstyle \ell$"></SUB>).</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(4)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+At least two of the visited states <I>s</I><SUB>i</SUB> must be equal
+and the proposition is proved.
+Proposition&nbsp;<A HREF="node6.html#prop:pumpingLemma">3</A> gives
+a more precise statement of the above statement
+and Figure&nbsp;<A HREF="node6.html#fig:pumpingLemma">11</A> sketches its proof.
+
+<P>
+<P>
+<DIV><A NAME="prop:pumpingLemma"><B>Proposition  3</B></A> (Pumping Lemma)  &nbsp; 
+Let <I>L</I> be a language recognized by FA
+and with an infinite number of words.
+Then there exists a positive integer <I>N</I> 
+such that for every word <I>m</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>L</I> with length <!-- MATH
+ ${\ell} > N$
+ -->
+<IMG
+ WIDTH="24" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ \ell$"> &gt; <I>N</I>
+there exist three words <I>u</I>, <I>v</I>, <I>w</I> such that
+<DL COMPACT>
+<DT>(<I>i</I>)</DT>
+<DD><!-- MATH
+ $m = u \, v \, w$
+ -->
+<I>m</I> = <I>u</I>&nbsp;<I>v</I>&nbsp;<I>w</I>,
+</DD>
+<DT>(<I>ii</I>)</DT>
+<DD><!-- MATH
+ $v \neq  {\varepsilon}$
+ -->
+<I>v</I> <IMG
+ WIDTH="37" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \neq$"> <IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">,
+</DD>
+<DT>(<I>iii</I>)</DT>
+<DD>for every positive integer <I>k</I> we have 
+               <!-- MATH
+ $u \, v^k \, w \in L$
+ -->
+<I>u</I>&nbsp;<I>v</I><SUP>k</SUP>&nbsp;<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>L</I>.
+</DD>
+</DL></DIV><P></P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:pumpingLemma"></A><A NAME="518"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 11:</STRONG>
+Sketch of the pumping Lemma.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1118" HEIGHT="591" BORDER="0"
+ SRC="img51.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{pumpingLemma.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV><B>Example  1</B> &nbsp; 
+Let us apply Proposition&nbsp;<A HREF="node6.html#prop:pumpingLemma">3</A> 
+to the language <!-- MATH
+ $L = \{ a^n b^n \}$
+ -->
+<I>L</I> = {<I>a</I><SUP>n</SUP><I>b</I><SUP>n</SUP>} over <!-- MATH
+ ${\Sigma} = \{ a, b\}$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> = {<I>a</I>, <I>b</I>}.
+Let us assume that <I>L</I> is recognized by FA.
+Let <!-- MATH
+ $N, m, u, v, w$
+ -->
+<I>N</I>, <I>m</I>, <I>u</I>, <I>v</I>, <I>w</I> be as in the proposition.
+If <I>v</I> counts more <I>a</I> than <I>b</I> then for <I>k</I> big enough
+<!-- MATH
+ $u \, v^k \, w$
+ -->
+<I>u</I>&nbsp;<I>v</I><SUP>k</SUP>&nbsp;<I>w</I> will also have more <I>a</I> than <I>b</I>
+and thus cannot belong to <I>L</I>.
+Similarly if <I>v</I> counts more <I>b</I> than <I>a</I> then
+<!-- MATH
+ $u \, v^k \, w$
+ -->
+<I>u</I>&nbsp;<I>v</I><SUP>k</SUP>&nbsp;<I>w</I> cannot belong to <I>L</I> for <I>k</I> big enough.
+So <I>v</I> must be of the form <I>a</I><SUP>n</SUP><I>b</I><SUP>n</SUP>.
+But then for <I>k</I> &gt; 1 the word <!-- MATH
+ $u \, v^k \, w$
+ -->
+<I>u</I>&nbsp;<I>v</I><SUP>k</SUP>&nbsp;<I>w</I> does not
+belong to <I>L</I>.
+Finally we are led to a contradiction and the language <I>L</I>
+is recognized by FA.</DIV><P></P>
+
+<P>
+<U>C<SMALL>ONSTRUCTION OF LANGUAGES RECOGNIZED BY </SMALL>FA</U>   We would like now to characterize those languages which
+are recognized by FA.
+To address this question we give a series
+of four propositions and one theorem.
+Each of these four propositions provide a mechanism (or rule)
+to build languages recognized by FA.
+Theorem&nbsp;<A HREF="node6.html#thrm:KleeneTheorem">3</A> states that these rules allow us to build
+all possible languages recognized by FAs.
+
+<UL>
+<LI>Proposition&nbsp;<A HREF="node6.html#prop:singleLetterLanguages">4</A> expresses the fact 
+      that languages consisting of a single word consisting itself
+      of a single letter are recognized by FA.
+      This statement is an obvious consequence 
+      of the previous Proposition&nbsp;<A HREF="node6.html#prop:finiteLanguagesAreRational">1</A>
+      and is illustrated by 
+      Figure&nbsp;<A HREF="node6.html#fig:singleLetterLanguage">12</A>.
+</LI>
+<LI>Proposition&nbsp;<A HREF="node6.html#prop:UnionOfRecognizedLanguages">5</A> expresses the fact 
+      that the union of two languages recognized by FA
+      is itself recognized by FA.
+      This statement is also trivial and was illustrated by 
+      Figure&nbsp;<A HREF="node2.html#fig:1automatonFor4">4</A>.
+</LI>
+<LI>Proposition&nbsp;<A HREF="node6.html#prop:ProductOfRecognizedLanguages">6</A> expresses the fact 
+      that the concatenation (or product) of two languages recognized by FA
+      is also recognized by FA.
+      This statement is also not difficult to prove
+      and we have already used this result implicitely
+      with most examples.
+</LI>
+<LI>Proposition&nbsp;<A HREF="node6.html#prop:StarOfRecognizedLanguage">7</A>
+      expresses the fact that the <EM>star</EM> of a language recognized by
+      FA is also recognized by FA.
+      The star (or <EM>Kleene closure</EM>) of a language
+      is defined and illustrated below.
+</LI>
+</UL>
+
+<P>
+<P>
+<DIV><A NAME="prop:singleLetterLanguages"><B>Proposition  4</B></A> &nbsp; 
+For every <!-- MATH
+ $x \in {\Sigma} \, {\cup} \,$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp; the language <!-- MATH
+ $L = \{ x \}$
+ -->
+<I>L</I> = {<I>x</I>}
+consisting of the single word <I>w</I> = <I>x</I> is recognized by FA.</DIV><P></P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:singleLetterLanguage"></A><A NAME="545"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 12:</STRONG>
+A DFA
+accepting a language consisting of a single letter.</CAPTION>
+<TR><TD><IMG
+ WIDTH="798" HEIGHT="152" BORDER="0"
+ SRC="img52.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{singleLetterLanguage.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+To illustrate Proposition&nbsp;<A HREF="node6.html#prop:UnionOfRecognizedLanguages">5</A>,
+<A HREF="node6.html#prop:ProductOfRecognizedLanguages">6</A> and 
+<A HREF="node6.html#prop:StarOfRecognizedLanguage">7</A>
+we will use the concept of a <EM>normalized FA</EM>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>N<SMALL>ORMALIZED  </SMALL>F<SMALL>INITE  </SMALL>A<SMALL>UTOMATA</SMALL></U>  A finite automaton <!-- MATH
+ ${\cal A} = ({\Sigma}, S, I, F, {\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>I</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">)
+is <EM>normalized</EM> if it satisfies to the following properties
+
+<UL>
+<LI><IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> has only one initial state, say <I>s</I>,
+</LI>
+<LI><IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> has only one final (= accepting) state, say <I>f</I>,
+</LI>
+<LI>no transition leads to the initial state <I>s</I>, or more formally, for every
+     <I>t</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> and every <!-- MATH
+ $x \in {\Sigma} \, {\cup} \, \{ {\varepsilon} \}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;{<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">}
+     we have <!-- MATH
+ $s \not\in {\delta}(t,x)$
+ -->
+<I>s</I> <IMG
+ WIDTH="34" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ \notin$"><IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>t</I>, <I>x</I>),
+</LI>
+<LI>no transition leaves from the final state <I>f</I>, or more formally, for every
+     <!-- MATH
+ $x \in {\Sigma} \, {\cup} \, \{ {\varepsilon} \}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;{<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">}
+     we have <!-- MATH
+ ${\delta}(f,x) = \emptyset$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>f</I>, <I>x</I>) = <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$">.
+</LI>
+</UL>
+Normalized FA are generally depicted 
+as shown on Figure&nbsp;<A HREF="node6.html#fig:normalizedFADiagram">13</A>.
+
+<DIV ALIGN="CENTER"><A NAME="fig:normalizedFADiagram"></A><A NAME="572"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 13:</STRONG>
+A normalized FA.</CAPTION>
+<TR><TD><IMG
+ WIDTH="794" HEIGHT="291" BORDER="0"
+ SRC="img53.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{normalizedFADiagram.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN="CENTER"><A NAME="fig:normalizedFAofR0Language"></A><A NAME="577"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 14:</STRONG>
+Normalized FAs for R0 languages.</CAPTION>
+<TR><TD><IMG
+ WIDTH="578" HEIGHT="411" BORDER="0"
+ SRC="img54.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{normalizedFAofR0Language.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE UNION OF TWO LANGUAGES RECOGNIZED BY </SMALL>FA</U>   is a language recognized by FA.
+Proposition&nbsp;<A HREF="node6.html#prop:UnionOfRecognizedLanguages">5</A>
+formulates this statement with DFAs
+and Figure&nbsp;<A HREF="node6.html#fig:sumOfNormalizedFA">15</A>
+illustrates it with normalized FAs.
+
+<DIV ALIGN="CENTER"><A NAME="fig:sumOfNormalizedFA"></A><A NAME="585"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 15:</STRONG>
+A normalized FA accepting the sum of two other normalized FAs.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1246" HEIGHT="967" BORDER="0"
+ SRC="img55.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{sumOfNormalizedFA.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<DIV><A NAME="prop:UnionOfRecognizedLanguages"><B>Proposition  5</B></A> &nbsp; 
+Let <I>L</I><SUB>1</SUB> and <I>L</I><SUB>2</SUB> be two languages over  <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+recognized by the DFAs <!-- MATH
+ ${\cal A}_1 = ({\Sigma},S_1,s_1,F_1,{\delta}_1)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>1</SUB> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I><SUB>1</SUB>, <I>s</I><SUB>1</SUB>, <I>F</I><SUB>1</SUB>,<IMG
+ WIDTH="40" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$ \delta_{{1}}^{{}}$">)
+and <!-- MATH
+ ${\cal A}_2 = ({\Sigma},S_2,s_2,F_2,{\delta}_2)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>2</SUB> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I><SUB>2</SUB>, <I>s</I><SUB>2</SUB>, <I>F</I><SUB>2</SUB>,<IMG
+ WIDTH="40" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$ \delta_{{2}}^{{}}$">) respectively.
+Let us assume that <!-- MATH
+ $S_1 \cap S_2 = \emptyset.$
+ -->
+<I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$ \cap$"> <I>S</I><SUB>2</SUB> = <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$">. 
+(If this is not the case then we can <EM>rename</EM> the states of  <!-- MATH
+ ${\cal A}_2$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>2</SUB>.)
+
+<P>
+Then, the language <!-- MATH
+ $L_1 \cup L_2$
+ -->
+<I>L</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> <I>L</I><SUB>2</SUB> is recognized by the NFA
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\cal A}_{1+2} = ({\Sigma}, S_1 \cup S_2, \{ s_1, s_2 \}, F_1 \cup F_2, {\delta}_{1+2})
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="39" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\displaystyle \cal {A}$"><SUB>1+2</SUB> = (<IMG
+ WIDTH="35" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="$\displaystyle \Sigma$">, <I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> <I>S</I><SUB>2</SUB>,{<I>s</I><SUB>1</SUB>, <I>s</I><SUB>2</SUB>}, <I>F</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> <I>F</I><SUB>2</SUB>,<IMG
+ WIDTH="72" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="$\displaystyle \delta_{{{1+2}}}^{{}}$">)</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(5)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where the transition function <!-- MATH
+ ${\delta}_{1+2}$
+ -->
+<IMG
+ WIDTH="72" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img61.png"
+ ALT="$ \delta_{{{1+2}}}^{{}}$"> is defined as follows
+for every <!-- MATH
+ $x \in {\Sigma}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> and for every <!-- MATH
+ $s \in S_1 \cup S_2$
+ -->
+<I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> <I>S</I><SUB>2</SUB>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\delta}_{1+2}(s,x)  \ = \ \left\{
+\begin{array}{rcl}
+{\delta}_1 (s,x) & {\rm if} & s \in S_1 \\
+{\delta}_1 (s,x) & {\rm if} & s \in S_2.
+\end{array}
+\right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="72" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="$\displaystyle \delta_{{{1+2}}}^{{}}$">(<I>s</I>, <I>x</I>)&nbsp; = &nbsp;<IMG
+ WIDTH="40" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{rcl} {\delta}_1 (s,x) &amp; {\rm if} &amp; s \in S_1 \\  {\delta}_1 (s,x) &amp; {\rm if} &amp; s \in S_2. \end{array} }\right.$"><IMG
+ WIDTH="338" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img63.png"
+ ALT="$\displaystyle \begin{array}{rcl} {\delta}_1 (s,x) &amp; {\rm if} &amp; s \in S_1 \\  {\delta}_1 (s,x) &amp; {\rm if} &amp; s \in S_2. \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(6)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE PRODUCT OF TWO LANGUAGES RECOGNIZED BY </SMALL>FA</U>   is a language recognized by FA.
+Proposition&nbsp;<A HREF="node6.html#prop:ProductOfRecognizedLanguages">6</A>
+ formulates this statement with DFAs
+and Figure&nbsp;<A HREF="node6.html#fig:productOfNormalizedFA">16</A>
+illustrates it with normalized FAs.
+
+<DIV ALIGN="CENTER"><A NAME="fig:productOfNormalizedFA"></A><A NAME="626"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 16:</STRONG>
+A normalized FA accepting the sum of two other normalized FAs.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1228" HEIGHT="902" BORDER="0"
+ SRC="img64.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{productOfNormalizedFA.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<P>
+<DIV><A NAME="prop:ProductOfRecognizedLanguages"><B>Proposition  6</B></A> &nbsp; 
+Let <I>L</I><SUB>1</SUB> and <I>L</I><SUB>2</SUB> be two languages over  <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+recognized by the DFAs <!-- MATH
+ ${\cal A}_1 = ({\Sigma},S_1,s_1,F_1,{\delta}_1)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>1</SUB> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I><SUB>1</SUB>, <I>s</I><SUB>1</SUB>, <I>F</I><SUB>1</SUB>,<IMG
+ WIDTH="40" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$ \delta_{{1}}^{{}}$">)
+and <!-- MATH
+ ${\cal A}_2 = ({\Sigma},S_2,s_2,F_2,{\delta}_2)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"><SUB>2</SUB> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I><SUB>2</SUB>, <I>s</I><SUB>2</SUB>, <I>F</I><SUB>2</SUB>,<IMG
+ WIDTH="40" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$ \delta_{{2}}^{{}}$">) respectively.
+Again, let us assume that <!-- MATH
+ $S_1 \cap S_2 = \emptyset.$
+ -->
+<I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img23.png"
+ ALT="$ \cap$"> <I>S</I><SUB>2</SUB> = <IMG
+ WIDTH="28" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \emptyset$">. 
+
+<P>
+We denote by <I>L</I><SUB>1</SUB><I>L</I><SUB>2</SUB> (or <I>L</I><SUB>1</SUB>.<I>L</I><SUB>2</SUB>) the language consisting of 
+all words of the form <I>w</I><SUB>1</SUB><I>w</I><SUB>2</SUB> (concatenation of <I>w</I><SUB>1</SUB> and  <I>w</I><SUB>2</SUB>)
+where <I>w</I><SUB>1</SUB> and  <I>w</I><SUB>2</SUB> belong to <I>L</I><SUB>1</SUB> and <I>L</I><SUB>2</SUB> respectively.
+This language is called the <U><SMALL>PRODUCT LANGUAGE</SMALL></U> of <I>L</I><SUB>1</SUB> by <I>L</I><SUB>2</SUB> 
+
+<P>
+Then, the language <I>L</I><SUB>1</SUB><I>L</I><SUB>2</SUB> is recognized by the NFA
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\cal A}_{1.2} = ({\Sigma}, S_1 \cup S_2, \{ s_1\}, F_2, {\delta}_{1.2})
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="39" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\displaystyle \cal {A}$"><SUB>1.2</SUB> = (<IMG
+ WIDTH="35" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="$\displaystyle \Sigma$">, <I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \cup$"> <I>S</I><SUB>2</SUB>,{<I>s</I><SUB>1</SUB>}, <I>F</I><SUB>2</SUB>,<IMG
+ WIDTH="59" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\displaystyle \delta_{{{1.2}}}^{{}}$">)</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(7)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where the transition function <!-- MATH
+ ${\delta}_{1.2}$
+ -->
+<IMG
+ WIDTH="59" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$ \delta_{{{1.2}}}^{{}}$"> is defined as follows
+for every <!-- MATH
+ $x \in {\Sigma} \cup \{ {{\varepsilon}} \}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> {<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">} and for every <!-- MATH
+ $s \in S_1 \cup S_2$
+ -->
+<I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I><SUB>1</SUB> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> <I>S</I><SUB>2</SUB>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\delta}_{1.2}(s,x)  \ = \ \left\{
+\begin{array}{rcl}
+{\delta}_1 (s,x)             &  {\rm if}   & s \in (S_1 \setminus F_1) \\
+{\delta}_1 (s,x)             &  {\rm if}   & s \in F_1 \ \ {\rm and} \ \ x \neq  {{\varepsilon}} \\
+\{ s_2   \} \cup  {\delta}_1 (s,x)  &  {\rm if}   & s \in F_1 \ \ {\rm and} \ \ x =  {{\varepsilon}} \\
+{\delta}_2 (s,x)             & {\rm if}   & s \in S_2.
+\end{array}
+\right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="59" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$\displaystyle \delta_{{{1.2}}}^{{}}$">(<I>s</I>, <I>x</I>)&nbsp; = &nbsp;<IMG
+ WIDTH="45" HEIGHT="211" ALIGN="MIDDLE" BORDER="0"
+ SRC="img67.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{rcl} {\delta}_1 (s,x) &amp; {\rm if} ...
+...\varepsilon}} \\  {\delta}_2 (s,x) &amp; {\rm if} &amp; s \in S_2. \end{array} }\right.$"><IMG
+ WIDTH="622" HEIGHT="211" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\displaystyle \begin{array}{rcl} {\delta}_1 (s,x) &amp; {\rm if} &amp; s \in (S_1 \setm...
+... \ x = {{\varepsilon}} \\  {\delta}_2 (s,x) &amp; {\rm if} &amp; s \in S_2. \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(8)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>K<SMALL>LEENE CLOSURE OF A LANGUAGE.</SMALL></U> Let <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> be an alphabet and let <I>w</I> be a word over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Let <I>n</I> be a non-negative integer.
+First we define the <I>n</I>-th power of <I>w</I>, denoted by <I>w</I><SUP>n</SUP>, as follows:
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+w^n  \ = \ \left\{
+\begin{array}{rcl}
+ {{\varepsilon}}   &   {\rm if}   & n = 0 \\
+w.w^{n-1}          &   {\rm if}   & n > 0. \\
+\end{array}
+\right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>w</I><SUP>n</SUP>&nbsp; = &nbsp;<IMG
+ WIDTH="40" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{rcl} {{\varepsilon}} &amp; {\rm if} &amp; n = 0 \\  w.w^{n-1} &amp; {\rm if} &amp; n &gt; 0. \\  \end{array} }\right.$"><IMG
+ WIDTH="329" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img70.png"
+ ALT="$\displaystyle \begin{array}{rcl} {{\varepsilon}} &amp; {\rm if} &amp; n = 0 \\  w.w^{n-1} &amp; {\rm if} &amp; n &gt; 0. \\  \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(9)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Let <I>L</I> be a language over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Now we define the <I>n</I>-th power of <I>L</I>, denoted by <I>L</I><SUP>n</SUP>, as follows:
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+L^n  \ = \ \left\{
+\begin{array}{rcl}
+\{ {{\varepsilon}} \}   &   {\rm if}   & n = 0 \\
+L.L^{n-1}          &   {\rm if}   & n > 0. \\
+\end{array}
+\right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>L</I><SUP>n</SUP>&nbsp; = &nbsp;<IMG
+ WIDTH="40" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img71.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{rcl} \{ {{\varepsilon}} \} &amp; {\rm if} &amp; n = 0 \\  L.L^{n-1} &amp; {\rm if} &amp; n &gt; 0. \\  \end{array} }\right.$"><IMG
+ WIDTH="325" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.png"
+ ALT="$\displaystyle \begin{array}{rcl} \{ {{\varepsilon}} \} &amp; {\rm if} &amp; n = 0 \\  L.L^{n-1} &amp; {\rm if} &amp; n &gt; 0. \\  \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(10)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Then we define the <EM>star</EM> (or <EM>Kleene closure</EM>)
+of <I>L</I>, denoted by <I>L</I><SUP> <TT>*</TT> </SUP>, as the union
+of all powers of <I>L</I>, that is
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+L^{\ast} \ = \ {\bigcup}_{n \geq 0} \, L^n.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>L</I><SUP> <TT>*</TT> </SUP>&nbsp; = &nbsp;<IMG
+ WIDTH="58" HEIGHT="118" ALIGN="MIDDLE" BORDER="0"
+ SRC="img73.png"
+ ALT="$\displaystyle \bigcup_{{{n \geq 0}}}^{{}}$">&nbsp;<I>L</I><SUP>n</SUP>.</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(11)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Therefore, a word <I>w</I> over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> belongs to  <I>L</I><SUP> <TT>*</TT> </SUP>
+if 
+
+<UL>
+<LI>either <I>w</I> is the empty word <!-- MATH
+ ${\varepsilon}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">
+</LI>
+<LI>or there exists a positive integer <I>n</I> and a word
+      <I>u</I> such that <I>w</I> = <I>u</I><SUP>n</SUP>.
+</LI>
+</UL>
+
+<DIV ALIGN="CENTER"><A NAME="fig:starOfAnAutomaton."></A><A NAME="707"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 17:</STRONG>
+A DFA accepting a language <I>L</I> and
+         a NFAIT accepting the star of <I>L</I>.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1044" HEIGHT="711" BORDER="0"
+ SRC="img74.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{starOfAnAutomaton.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+We give now some useful formulas.
+Let <I>L</I> and <I>M</I> be two languages over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Observe that
+
+<UL>
+<LI><!-- MATH
+ ${\Sigma}^{\ast}$
+ -->
+<IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img75.png"
+ ALT="$ \Sigma^{{{\ast}}}_{{}}$"> is the set of all words over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+</LI>
+<LI>Let <I>L</I><SUP>+</SUP> be the union of all <I>L</I><SUP>n</SUP> with <I>n</I> &gt; 0.
+      Then <!-- MATH
+ $L^{+} = L . L^{\ast}$
+ -->
+<I>L</I><SUP>+</SUP> = <I>L</I>.<I>L</I><SUP> <TT>*</TT> </SUP>.
+</LI>
+<LI>If <!-- MATH
+ $L \subseteq M$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>M</I> then <!-- MATH
+ $L^{\ast} \subseteq M^{\ast}$
+ -->
+<I>L</I><SUP> <TT>*</TT> </SUP> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <I>M</I><SUP> <TT>*</TT> </SUP>.
+</LI>
+<LI>For every non-negative integer <I>n</I> we ahve <!-- MATH
+ ${L^{\ast}}^n  = L^{\ast}$
+ -->
+<I>L</I><SUP> <TT>*</TT> n</SUP> = <I>L</I><SUP> <TT>*</TT> </SUP>.
+</LI>
+<LI><!-- MATH
+ ${L^{\ast}}^{\ast}  = L^{\ast}$
+ -->
+<I>L</I><SUP> <TT>*</TT> <TT>*</TT> </SUP> = <I>L</I><SUP> <TT>*</TT> </SUP>.
+</LI>
+<LI><!-- MATH
+ $(L^{\ast} + M^{\ast})^{\ast} = (L^{\ast} . M^{\ast})^{\ast}$
+ -->
+(<I>L</I><SUP> <TT>*</TT> </SUP> + <I>M</I><SUP> <TT>*</TT> </SUP>)<SUP> <TT>*</TT> </SUP> = (<I>L</I><SUP> <TT>*</TT> </SUP>.<I>M</I><SUP> <TT>*</TT> </SUP>)<SUP> <TT>*</TT> </SUP>.
+</LI>
+<LI><!-- MATH
+ $(L^{\ast} + M^{\ast})^{\ast} = (L + M)^{\ast}$
+ -->
+(<I>L</I><SUP> <TT>*</TT> </SUP> + <I>M</I><SUP> <TT>*</TT> </SUP>)<SUP> <TT>*</TT> </SUP> = (<I>L</I> + <I>M</I>)<SUP> <TT>*</TT> </SUP>.
+</LI>
+</UL>
+
+<P>
+<U>T<SMALL>HE </SMALL>K<SMALL>LEENE CLOSURE OF A LANGUAGE RECOGNIZED BY </SMALL>FA</U>    is a language recognized by FA.
+Proposition&nbsp;<A HREF="node6.html#prop:StarOfRecognizedLanguage">7</A>
+ formulates this statement with DFAs
+and Figure&nbsp;<A HREF="node6.html#fig:starOfNormalizedFA">18</A>
+illustrates it with normalized FAs.
+
+<DIV ALIGN="CENTER"><A NAME="fig:starOfNormalizedFA"></A><A NAME="741"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 18:</STRONG>
+A normalized FA accepting the star of another normalized FA.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1173" HEIGHT="761" BORDER="0"
+ SRC="img76.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.4]{starOfNormalizedFA.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+<P>
+<DIV><A NAME="prop:StarOfRecognizedLanguage"><B>Proposition  7</B></A> &nbsp; 
+Let <I>L</I> be a language over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> recognized by the
+DFA <!-- MATH
+ ${\cal A} = ({\Sigma},S,s_0,F,{\delta})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>s</I><SUB>0</SUB>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">).
+
+<P>
+Then <I>L</I><SUP> <TT>*</TT> </SUP> is recognized by the NFA 
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\cal A}^{\ast} = ({\Sigma},S,s,F,{\delta}^{\ast})
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="39" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\displaystyle \cal {A}$"><SUP> <TT>*</TT> </SUP> = (<IMG
+ WIDTH="35" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="$\displaystyle \Sigma$">, <I>S</I>, <I>s</I>, <I>F</I>,<IMG
+ WIDTH="41" HEIGHT="71" ALIGN="MIDDLE" BORDER="0"
+ SRC="img77.png"
+ ALT="$\displaystyle \delta^{{{\ast}}}_{{}}$">)</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(12)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where the transition function <!-- MATH
+ ${\delta}^{\ast}$
+ -->
+<IMG
+ WIDTH="41" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img78.png"
+ ALT="$ \delta^{{{\ast}}}_{{}}$"> is defined as follows
+for every <!-- MATH
+ $x \in {\Sigma} \cup \{ {{\varepsilon}} \}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> {<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">} and for every <I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I>
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{\delta}^{\ast}(s,x)  \ = \ \left\{
+\begin{array}{rcl}
+{\delta}(s,x)   &  {\rm if}   & x \neq  {{\varepsilon}} \\
+F               &  {\rm if}   & s  = s_0 \ \ {\rm and} \ \ x =  {{\varepsilon}} \\
+\{ s_0 \}       &  {\rm if}   & s  \in F \ \ {\rm and} \ \ x =  {{\varepsilon}}
+\end{array}
+\right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="41" HEIGHT="71" ALIGN="MIDDLE" BORDER="0"
+ SRC="img77.png"
+ ALT="$\displaystyle \delta^{{{\ast}}}_{{}}$">(<I>s</I>, <I>x</I>)&nbsp; = &nbsp;<IMG
+ WIDTH="45" HEIGHT="168" ALIGN="MIDDLE" BORDER="0"
+ SRC="img79.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{rcl} {\delta}(s,x) &amp; {\rm if} &amp; x...
+...&amp; {\rm if} &amp; s \in F \ \ {\rm and} \ \ x = {{\varepsilon}} \end{array} }\right.$"><IMG
+ WIDTH="500" HEIGHT="168" ALIGN="MIDDLE" BORDER="0"
+ SRC="img80.png"
+ ALT="$\displaystyle \begin{array}{rcl} {\delta}(s,x) &amp; {\rm if} &amp; x \neq {{\varepsilo...
+...{ s_0 \} &amp; {\rm if} &amp; s \in F \ \ {\rm and} \ \ x = {{\varepsilon}} \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(13)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>K<SMALL>LEENE </SMALL>T<SMALL>HEOREM.</SMALL></U> We denote by <!-- MATH
+ $R_0({\Sigma})$
+ -->
+<I>R</I><SUB>0</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">) the set of all
+languages of the form {<I>x</I>} for <!-- MATH
+ $x \in {\Sigma} \, {\cup} \, \{{\varepsilon}\}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">&nbsp; <IMG
+ WIDTH="34" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \cup$"> &nbsp;{<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \varepsilon$">}.
+Then for a positive integer <I>n</I> we define <!-- MATH
+ $R_n({\Sigma})$
+ -->
+<I>R</I><SUB>n</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">) 
+as the set of languages over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> consisting of
+
+<OL>
+<LI>the languages of  <!-- MATH
+ $R_{n-1}({\Sigma})$
+ -->
+<I>R</I><SUB>n-1</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">),
+</LI>
+<LI>the languages of the form <I>L</I> + <I>M</I> for <!-- MATH
+ $L,M \in R_{n-1}({\Sigma})$
+ -->
+<I>L</I>, <I>M</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>R</I><SUB>n-1</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">),
+</LI>
+<LI>the languages of the form <I>L</I>.<I>M</I> for <!-- MATH
+ $L,M \in R_{n-1}({\Sigma})$
+ -->
+<I>L</I>, <I>M</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>R</I><SUB>n-1</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">),
+</LI>
+<LI>the languages of the form <I>L</I><SUP> <TT>*</TT> </SUP> for <!-- MATH
+ $L\in R_{n-1}({\Sigma})$
+ -->
+<I>L</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>R</I><SUB>n-1</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">).
+</LI>
+</OL>
+Obviously, for every non-negative integer <I>n</I>,
+every language member of <!-- MATH
+ $R_n({\Sigma})$
+ -->
+<I>R</I><SUB>n</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">) is recognized by FA.
+The theorem of Kleene studies the <EM>opposite direction</EM>.
+
+<P>
+<P>
+<DIV><A NAME="thrm:KleeneTheorem"><B>Theorem  3</B></A> (Kleene)  &nbsp; 
+Let <I>L</I> be a language recognized by FA.
+Then there exists a non-negative integer <I>n</I>
+such that <I>L</I> belongs to <!-- MATH
+ $R_n({\Sigma})$
+ -->
+<I>R</I><SUB>n</SUB>(<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">).</DIV><P></P>
+
+<P>
+This suggests the introduction of the notion
+of a <EM>regular expression</EM>.
+
+<P>
+<HR>
+<A NAME="tex2html108"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html106"
+  HREF="node1.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html100"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html109"
+  HREF="node7.html">Regular expressions</A>
+<B>Up:</B> <A NAME="tex2html107"
+  HREF="node1.html">Finite Automata</A>
+<B> Previous:</B> <A NAME="tex2html101"
+  HREF="node5.html">Finite Automata.</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

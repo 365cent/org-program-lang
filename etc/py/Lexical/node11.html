@@ -1,0 +1,276 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>LEX regular expressions</TITLE>
+<META NAME="description" CONTENT="LEX regular expressions">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node12.html">
+<LINK REL="previous" HREF="node10.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node12.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html168"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html166"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html160"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html169"
+  HREF="node12.html">How the input is matched</A>
+<B>Up:</B> <A NAME="tex2html167"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html161"
+  HREF="node10.html">Introduction</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00021200000000000000">
+LEX regular expressions</A>
+</H3>  
+<P>
+<U>LEX <SMALL>REGULAR EXPRESSIONS.</SMALL></U>       A LEX regular expression is a word made of
+
+<UL>
+<LI>text characters (letters of the alphabet, digits, ...)
+</LI>
+<LI>operators :<code> " \ { } [ ] ^ $ &lt; &gt; ? . * + | () / </code>
+</LI>
+</UL> 
+Moreover
+
+<UL>
+<LI>An operator can be used as a text character if it preceeded with the
+escape operator (backslash).
+</LI>
+<LI>The quotation marks indicate that whatever  is contained
+       between a pair of quotes is to be taken as text characters.
+       For instance 
+<DIV ALIGN="CENTER">
+<TT>xyz"++"</TT>
+
+</DIV>
+matches the string <TT>xyz++</TT>.
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>A <SMALL>CHARACTER CLASS</SMALL></U> is a class of characters 
+      specified using the operator pair <TT>[ ]</TT>.
+      The expression
+<DIV ALIGN="CENTER">
+<TT>[ab]</TT>
+
+</DIV>
+matches the string <TT>a</TT> or <TT>b</TT>.
+
+<P>
+Within square brackets most operators are ignored
+     except the three special characters <code>\ - ^</code> 
+     are which used as follows
+<DL COMPACT>
+<DT>(a)</DT>
+<DD>the escape character <code>\</code> as above,
+</DD>
+<DT>(b)</DT>
+<DD>the minus character <code>-</code> which is used for ranges like in
+<PRE>
+digit       [0-9]
+</PRE>
+</DD>
+<DT>(c)</DT>
+<DD>the <EM>hat</EM> character 
+           <code>^</code> as first character after the opening square bracket,
+                it is used for complemented matches like in
+<PRE>
+NOTabc      [^abc]
+</PRE>
+</DD>
+</DL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>O<SMALL>PTIONAL EXPRESSIONS.</SMALL></U>  The <TT>?</TT> operator indicates an optional element 
+of an expression. For instance
+<PRE>
+ab?c
+</PRE>
+matches either <TT>ac</TT> or <TT>abc</TT>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>R<SMALL>EPEATED EXPRESSIONS.</SMALL></U>   Repetitions of patterns are indicated by the operators
+<TT>*</TT> and <TT>+</TT>.
+
+<UL>
+<LI>The pattern <TT>a*</TT> matches any number of 
+      consecutive <TT>a</TT> characters (including zero).
+</LI>
+<LI>The pattern <TT>[a-z]+</TT> is any positive number
+     of consecutive lower-case alphabetic characters.
+</LI>
+</UL>
+Hence we can recognize identifiers in a typical computer language with
+<PRE>
+[A-Za-z][A-Za-z0-9]*
+</PRE>
+Repetitions can also be obtained with the pair operator  {}.
+
+<UL>
+<LI>If {} encloses numbers, it specifies repetitions.
+      For instance <TT>a</TT>{<TT>1,5</TT>} matches 1 to 5 repetitions of <TT>a</TT>.
+</LI>
+<LI><B>Note</B> that if {} encloses a name, this name
+      should be defined in the definition section.
+      Then LEX substitutes the definition for the name.
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>A<SMALL>LTERNATING.</SMALL></U> The operator <TT>|</TT> indicates alternation.
+For instance
+<PRE>
+(ab|cd)
+</PRE>
+matches the language consisting of both
+words <TT>ab</TT> and <TT>cd</TT>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>G<SMALL>ROUPING.</SMALL></U>    Parentheses are used for grouping (when not clear).
+For instance
+<PRE>
+(ab|cd+)?(ef)*
+</PRE>
+denotes the language of the words that are either empty or
+
+<UL>
+<LI>optionally starts with 
+
+<UL>
+<LI><TT>ab</TT> or 
+</LI>
+<LI><TT>c</TT> followed by any positive number of <TT>d</TT>
+</LI>
+</UL>
+</LI>
+<LI>and continues with any number of repetition of <TT>ef</TT>
+</LI>
+</UL>
+Another example: an expression specifying a real number
+<PRE>
+-?(([0-9]+)|([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?)
+</PRE>
+where <code>\.</code> denotes a literal period.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>C<SMALL>ONTEXT SENSITIVITY.</SMALL></U>   LEX provides some support for contextual grammatical rules.
+
+<UL>
+<LI>If <code>^</code>  is the first character in an expression,
+      then this expression will only be matched at the beginning 
+      of a line.
+</LI>
+<LI>If <TT>$</TT> is the last character in an expression,
+      then this expression will only be matched at the end
+      of a line.
+</LI>
+<LI>If <I>r</I> and <I>s</I> are two LEX regular expressions
+      then <I>r</I><TT>/</TT><I>s</I> is another LEX regular expression.
+
+<UL>
+<LI>It matches <I>r</I> if and only if it is followed by an <I>s</I>.
+</LI>
+<LI>It is called a <EM>trailing context</EM>.
+</LI>
+<LI>After use in this context, <I>s</I> is then returned 
+      to the input before the action is executed.
+      So the action only sees the text matched by <I>r</I>
+</LI>
+<LI><EM>Left context</EM> is handled by means of <EM>start conditions</EM>
+      which we will talk about later.
+</LI>
+</UL>
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<HR>
+<A NAME="tex2html168"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html166"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html160"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html169"
+  HREF="node12.html">How the input is matched</A>
+<B>Up:</B> <A NAME="tex2html167"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html161"
+  HREF="node10.html">Introduction</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

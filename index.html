@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization of Programming Languages</title>
+    <link rel="stylesheet" href="node/output.css">
+</head>
+
+<body class="bg-gray-100 p-10 font-elegant">
+    <div class="max-w-screen-xl mx-auto bg-white p-8 rounded-xl shadow-lg">
+        <h1 class="text-2xl font-medium mb-4">3342</h1>
+        <div class="container">
+
+        </div>
+    </div>
+    <button>❌</button>
+    <script>
+        const container = document.querySelector('.container');
+        const closeBtn = document.querySelector('button');
+        const pdfs = [
+            "pdf/final_sample_sol.pdf",
+            "pdf/11.2_Functional_Programming.pdf",
+            "pdf/01_Introduction.pdf",
+            "pdf/02a_Syntax_scanning.pdf",
+            "pdf/A3_2022_sol.pdf",
+            "pdf/06_Control_Flow.pdf",
+            "pdf/A4_2022_sol.pdf",
+            "pdf/final_sample.pdf",
+            "pdf/A1_2022.pdf",
+            "pdf/10_Objects.pdf",
+            "pdf/A2_2022_sol.pdf",
+            "pdf/12.2_Logic_Programming.pdf",
+            "pdf/11.3-4.lambda_calc_reductions.pdf",
+            "pdf/Ch.12.3_Predicate_Calculus.pdf",
+            "pdf/A4_2022.pdf",
+            "pdf/Prolog_trees.pdf",
+            "pdf/SLR_graph_examples.pdf",
+            "pdf/02b_Syntax_LL-parsing.pdf",
+            "pdf/A1_2022_sol.pdf",
+            "pdf/LL1_syntax_tree.pdf",
+            "pdf/03_Names.pdf",
+            "pdf/02c_Syntax_LR-parsing.pdf",
+            "pdf/04_Semantic_Analysis.pdf",
+            "pdf/07_08_Types.pdf",
+            "pdf/Ch.11.7_Lambda_Calculus.pdf",
+            "pdf/12.1_Predicate_Calculus.pdf",
+            "pdf/11.1_Lambda_Calculus.pdf",
+            "pdf/midterm_sample (1).pdf",
+            "pdf/A3_2022.pdf",
+            "pdf/A2_2022.pdf",
+            "pdf/CS3342_midterm_2020_sol(1).pdf"
+        ];
+        const close = () => {
+            let active = document.querySelector('.active');
+            if (active) {
+                active.classList.remove('active');
+                active.src = active.src + '#toolbar=0';
+            }
+        }
+        // sort pdf by name
+        pdfs.sort((a, b) => a.localeCompare(b));
+        pdfs.forEach(pdf => {
+            const frameset = document.createElement('div');
+            const iframe = document.createElement('iframe');
+            const title = document.createElement('h2');
+            iframe.src = pdf + '#toolbar=0';
+            title.textContent = pdf.split('/').pop();
+            title.classList.add('text-xl', 'font-normal', 'mb-4', 'text-gray-400');
+            title.onclick = () => {
+                iframe.classList.add('active');
+                iframe.src = pdf;
+            }
+            frameset.appendChild(title);
+            frameset.appendChild(iframe);
+            container.appendChild(frameset);
+        });
+        closeBtn.onclick = close;
+    </script>
+</body>
+
+</html>

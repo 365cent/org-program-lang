@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Introduction</TITLE>
+<META NAME="description" CONTENT="Introduction">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node11.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html158"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html156"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html150"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html159"
+  HREF="node11.html">LEX regular expressions</A>
+<B>Up:</B> <A NAME="tex2html157"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html151"
+  HREF="node9.html">LEX</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00021100000000000000">
+Introduction</A>
+</H3> 
+<P>
+<U>D<SMALL>ESCRIPTION.</SMALL></U>   <SMALL>LEX</SMALL> is a tool for generating programs
+that   perform   pattern-matching  on  text.
+More precisely <SMALL>LEX</SMALL> reads
+
+<UL>
+<LI>the given input files
+</LI>
+<LI>or its standard input if no  file names  are egiven,
+</LI>
+</UL>
+for a  description of a scanner to generate in form of a C 
+source file, <TT>lex.yy.c</TT>, which defines  a  routine  <TT>yylex()</TT>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>F<SMALL>ORMAT OF THE INPUT FILE</SMALL></U>  The  flex input file consists of three sections, separated
+by a line with just <TT>%%</TT> in it:
+
+<P>
+<PRE>
+definitions
+%%
+rules
+%%
+user code
+</PRE>
+
+<UL>
+<LI>Any section may be empty.
+</LI>
+<LI>Nonempty sections must be separated from each other 
+      by %%.
+</LI>
+<LI>The separator between the first and the second sections is necessary.
+</LI>
+</UL>
+
+<P>
+<P>
+<DIV><B>Example  2</B> &nbsp; 
+The following flex input specifies  a  scanner
+which  whenever  it  encounters the string "username" will
+replace it with the user's login name.
+<PRE>
+[moreno@iguanodon lex]$ more username.l
+%%
+username    printf( "%s", getlogin() );
+[moreno@iguanodon lex]$ lex username.l 
+[moreno@iguanodon lex]$ gcc lex.yy.c  -ll -o username.exe
+[moreno@iguanodon lex]$  ./username.exe 
+username
+moreno
+user name
+user name
+</PRE>
+By default, any text not matched  by  a  flex  scanner  is
+copied to the output.</DIV><P></P>
+
+<P>
+<P>
+<DIV><B>Example  3</B> &nbsp; 
+This  scanner counts the number of characters and the 
+       number of lines in its input (it  produces  no  output  other
+       than  the  final  report  on  the counts).  The first line
+       declares two globals, <TT>num_lines</TT> and  <TT>num_chars</TT>,  which
+       are  accessible both inside <TT>yylex()</TT> and in the <TT>main()</TT> 
+       routine declared after the second %%.
+       There are two rules.
+       One which matches a newline and increments both the
+       line count and the character count.
+       The other one which  matches
+       any  character other than a newline (indicated by the <TT>.</TT>
+       regular expression).
+<PRE>
+[moreno@iguanodon lex]$ more count.l
+        int num_lines = 0, num_chars = 0;
+
+%%
+\n      ++num_lines; ++num_chars;
+.       ++num_chars;
+
+%%
+main()
+     {
+     yylex();
+     printf( "# of lines = %d, # of chars = %d\n",
+            num_lines, num_chars );
+}
+[moreno@iguanodon lex]$ flex count.l 
+[moreno@iguanodon lex]$ gcc lex.yy.c -ll -o count.out
+[moreno@iguanodon lex]$ ./count.out &lt; count.l
+# of lines = 13, # of chars = 222
+</PRE></DIV><P></P>
+
+<P>
+<P>
+<DIV><B>Example  4</B> &nbsp; 
+
+<P>
+<PRE>
+[moreno@iguanodon lex]$ more trivialLanguage.l 
+%{
+/* need this for the call to atof() below */
+#include &lt;stdlib.h&gt;
+%}
+
+DIGIT    [0-9]
+ID       [a-zA-z][a-zA-z0-9]*
+INT      {DIGIT}+
+REAL     {DIGIT}*"."{DIGIT}+  
+
+
+%%
+
+{INT}       {
+            printf( "An integer: %s (%d)\n", yytext,
+                    atoi( yytext ) );
+            }
+
+{REAL}      {
+            printf( "A float: %s (%g)\n", yytext,
+                    atof( yytext ) );
+            }
+
+if          {printf( "The keyword: %s\n", yytext );
+            }
+
+{ID}        printf( "An identifier: %s\n", yytext );
+
+[ \t\n]+          /* eat up whitespace */
+
+.           printf( "Unrecognized character: %s\n", yytext );
+
+
+[moreno@iguanodon lex]$ flex trivialLanguage.l 
+[moreno@iguanodon lex]$ gcc lex.yy.c -ll -o trivialLanguage.out
+[moreno@iguanodon lex]$ ./trivialLanguage.out 
+123.456 if compiler ok then x := -780000000000000000000000000000000000
+A float: 123.456 (123.456)
+The keyword: if
+An identifier: compiler
+An identifier: ok
+An identifier: then
+An identifier: x
+Unrecognized character: :
+Unrecognized character: =
+Unrecognized character: -
+An integer: 780000000000000000000000000000000000 (2147483647)
+</PRE></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE DEFINITION SECTION.</SMALL></U>    Each line in this section has the general form
+<DIV ALIGN="CENTER">
+<TT>name</TT> <TT>expression</TT>
+
+</DIV>
+where
+
+<UL>
+<LI><TT>name</TT> shoud begin in the first column
+</LI>
+<LI>there is at least one blank or tabulation between <TT>name</TT> and <TT>expression</TT>.
+</LI>
+</UL>
+Moreover anything global to <TT>lex.yy.c</TT>
+
+<UL>
+<LI>is usually declared in this section
+</LI>
+<LI>between lines containing <TT>%</TT>{ and <TT>%</TT>}
+</LI>
+<LI>and is copied literally to <TT>lex.yy.c</TT>.
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>RANSLATION RULES SECTION.</SMALL></U>     Each line in this section has the general form
+<DIV ALIGN="CENTER">
+<TT>expression</TT> <TT>action</TT> 
+
+</DIV>
+where
+
+<UL>
+<LI><TT>action</TT> is a C statement or whatever you want echoed. 
+      Unmatched input is echoed directly to output.
+</LI>
+<LI><TT>expression</TT> is a LEX regular expression.
+</LI>
+</UL>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>U<SMALL>SER CODE.</SMALL></U>           In this section the user
+
+<UL>
+<LI>can redefine the <TT>main()</TT> function whose default is
+<PRE>
+int main()
+        {
+        yylex();
+        return 0;
+        }
+</PRE>
+</LI>
+<LI>can redefine the <TT>yywrap()</TT> function which
+     is called when the LEX generated program reads the end-of-file,
+</LI>
+<LI>may define other routines which are called in the 
+      translation rules section.
+</LI>
+</UL>
+
+<P>
+<HR>
+<A NAME="tex2html158"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html156"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html150"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html159"
+  HREF="node11.html">LEX regular expressions</A>
+<B>Up:</B> <A NAME="tex2html157"
+  HREF="node9.html">LEX</A>
+<B> Previous:</B> <A NAME="tex2html151"
+  HREF="node9.html">LEX</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,1310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>Minimal automaton</TITLE>
+<META NAME="description" CONTENT="Minimal automaton">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="previous" HREF="node15.html">
+<LINK REL="up" HREF="node15.html">
+<LINK REL="next" HREF="node17.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html213"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html211"
+  HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html207"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html214"
+  HREF="node17.html">About this document ...</A>
+<B>Up:</B> <A NAME="tex2html212"
+  HREF="node15.html">The design of an efficient</A>
+<B> Previous:</B> <A NAME="tex2html208"
+  HREF="node15.html">The design of an efficient</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H3><A NAME="SECTION00023100000000000000">
+Minimal automaton</A>
+</H3>  
+<P>
+<U>E<SMALL>QUIVALENCE OF WORDS MODULO A LANGUAGE.</SMALL></U>   Let <!-- MATH
+ $L \subseteq {\Sigma}^\ast$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be a language over the alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Let <!-- MATH
+ $u,v \in {\Sigma}^\ast$
+ -->
+<I>u</I>, <I>v</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be two words (that may belong or not 
+to the language <I>L</I>).
+We say that the language <I>L</I> <U><SMALL>SEPARATES</SMALL></U> <I>u</I> et <I>v</I> if
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+\left\{ \begin{array}{l} u \in L \\v \not\in L \end{array} \right.
+\ \ {\rm ou} \ \
+\left\{ \begin{array}{l} u \not\in L \\v \in L \end{array} \right.
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="40" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img83.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{l} u \in L \\  v \not\in L \end{array} }\right.$"><IMG
+ WIDTH="127" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img84.png"
+ ALT="$\displaystyle \begin{array}{l} u \in L \\  v \not\in L \end{array}$">&nbsp; <I>ou</I>&nbsp; <IMG
+ WIDTH="40" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img85.png"
+ ALT="$\displaystyle \left\{\vphantom{ \begin{array}{l} u \not\in L \\  v \in L \end{array} }\right.$"><IMG
+ WIDTH="127" HEIGHT="124" ALIGN="MIDDLE" BORDER="0"
+ SRC="img86.png"
+ ALT="$\displaystyle \begin{array}{l} u \not\in L \\  v \in L \end{array}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(14)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+We say that <I>u</I> et <I>v</I> are equivalent modulo <I>L</I> and we write 
+<!-- MATH
+ $u \equiv v \mod{\, L}$
+ -->
+<I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<I>L</I> if for every <!-- MATH
+ $w \in {\Sigma}^\ast$
+ -->
+<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> the language <I>L</I>
+does <B>not separate</B> the words <I>u</I>&nbsp;<I>w</I> and <I>v</I>&nbsp;<I>w</I>.
+In other words we have
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+u \equiv v \mod{\, L} \ \ \ \ \iff \ \ \ \
+(\forall w \in {\Sigma}^\ast) \ \left(
+u \, w \in L 
+ \ \ \iff \ \
+v \, w \in L                     \right)
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>u</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img88.png"
+ ALT="$\displaystyle \equiv$"> <I>v</I> mod&nbsp;<I>L</I>&nbsp; &nbsp; <IMG
+ WIDTH="95" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.png"
+ ALT="$\displaystyle \iff$">&nbsp; &nbsp; (<IMG
+ WIDTH="30" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img90.png"
+ ALT="$\displaystyle \forall$"><I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <IMG
+ WIDTH="49" HEIGHT="71" ALIGN="MIDDLE" BORDER="0"
+ SRC="img91.png"
+ ALT="$\displaystyle \Sigma^{{\ast}}_{{}}$">)&nbsp;<IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img92.png"
+ ALT="$\displaystyle \left(\vphantom{ u \, w \in L \ \ \iff \ \ v \, w \in L }\right.$"><I>u</I>&nbsp;<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>L</I>&nbsp; <IMG
+ WIDTH="95" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.png"
+ ALT="$\displaystyle \iff$">&nbsp; <I>v</I>&nbsp;<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>L</I><IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img93.png"
+ ALT="$\displaystyle \left.\vphantom{ u \, w \in L \ \ \iff \ \ v \, w \in L }\right)$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(15)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+The relation  <!-- MATH
+ $u \equiv v \mod{\, L}$
+ -->
+<I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<I>L</I> is an equivalence relation
+(since it is reflexive, symmetric and transitive) and thus
+defines equivalence classes called the <EM>equivalence
+classes</EM> (or <EM>residue classes</EM>) <EM>associated with</EM> <I>L</I>.
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>E<SMALL>QUIVALENCE OF WORDS MODULO AN AUTOMATON.</SMALL></U> Let <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) be a DFA.
+Let <!-- MATH
+ $u,v \in {\Sigma}^\ast$
+ -->
+<I>u</I>, <I>v</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be two words
+We say that <I>u</I> et <I>v</I> are equivalent modulo <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> and we write 
+<!-- MATH
+ $u \equiv v \mod{\, {\delta}}$
+ -->
+<I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> if after reading <I>u</I> 
+the DFA is in the same state than after reading <I>v</I>.
+Let us denote by <!-- MATH
+ ${\delta}(i,\, u)$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>i</I>,&nbsp;<I>u</I>) and <!-- MATH
+ ${\delta}(i,v)$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>i</I>, <I>v</I>)
+the state of the automaton <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> after reading <I>u</I> and <I>v</I> respectively.
+Then we have
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+u \equiv v  \mod{\, {\delta}} \ \ \ \ \iff \ \ \ \
+{\delta}(i,u) = {\delta}(i,v).
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>u</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img88.png"
+ ALT="$\displaystyle \equiv$"> <I>v</I> mod&nbsp;<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">&nbsp; &nbsp; <IMG
+ WIDTH="95" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.png"
+ ALT="$\displaystyle \iff$">&nbsp; &nbsp; <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>i</I>, <I>u</I>) = <IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>i</I>, <I>v</I>).</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(16)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Again the relation <!-- MATH
+ $u \equiv v \mod{\, {\delta}}$
+ -->
+<I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"> 
+is an equivalence relation and thus defines
+residue classes associated with the automaton <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">.
+
+<P>
+<P>
+<DIV><B>Example  6</B> &nbsp; 
+The DFA over <!-- MATH
+ ${\Sigma} = \{a, b\}$
+ -->
+<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$"> = {<I>a</I>, <I>b</I>} 
+on Figure&nbsp;<A HREF="node16.html#fig:nonMinimalAutomaton">20</A> has three residue classes:
+
+<UL>
+<LI>that of the words with no <I>a</I>,
+</LI>
+<LI>that of the words with no <I>b</I> after an <I>a</I>,
+</LI>
+<LI>that of the words with a factor <I>ab</I>.
+</LI>
+</UL>
+
+<DIV ALIGN="CENTER"><A NAME="fig:nonMinimalAutomaton"></A><A NAME="1173"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 20:</STRONG>
+A DFA whith three classes of equivalence.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1105" HEIGHT="302" BORDER="0"
+ SRC="img94.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{nonMinimalAutomaton.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+</DIV><P></P>
+
+<P>
+<P>
+<DIV><A NAME="prop:equiModDeltaImpliesEquivModLanguage"><B>Proposition  8</B></A> &nbsp; 
+Let <!-- MATH
+ $L \subseteq {\Sigma}^\ast$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be a language over <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+recognized by the DFA <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">).
+For every words <I>u</I> and <I>v</I> we have
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+u \equiv v \mod{\, {\delta}} \ \ \Longrightarrow \ \ u \equiv v \mod{\, L}
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><I>u</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img88.png"
+ ALT="$\displaystyle \equiv$"> <I>v</I> mod&nbsp;<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">&nbsp; <IMG
+ WIDTH="67" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img95.png"
+ ALT="$\displaystyle \Longrightarrow$"> &nbsp; <I>u</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img88.png"
+ ALT="$\displaystyle \equiv$"> <I>v</I> mod&nbsp;<I>L</I></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(17)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P></DIV><P></P>
+
+<P>
+<P>
+<DIV><B>Remark  4</B> &nbsp; 
+<EM>Proposition&nbsp;<A HREF="node16.html#prop:equiModDeltaImpliesEquivModLanguage">8</A>
+expresses the fact that every residue class modulo the automaton <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">
+is entirely contained in a residue class modulo its associated language <I>L</I>.
+Therefore the number of classes modulo <I>L</I> is upper bounded by
+the number of classes modulo <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> and thus by the
+number of states of <IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$">.
+It follows from the following theorem that 
+having a finite number of residue classes
+is a necessary and sufficient condition
+for a language to be recognized by FA.
+</EM> </DIV><P></P>
+
+<P>
+<P>
+<DIV><A NAME="thrm:FinitelyManyClassesImpliesRational"><B>Theorem  4</B></A> &nbsp; 
+Let <!-- MATH
+ $L \subseteq {\Sigma}^\ast$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be a language over the alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+Let <I>n</I> be a positive integer.
+If there exist exactly <I>n</I> residue classes modulo <I>L</I> 
+then there exists a DFA with <I>n</I> states that recognizes <I>L</I>.</DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>M<SMALL>INIMAL AUTOMATON.</SMALL></U>  Let <!-- MATH
+ $L \subseteq {\Sigma}^\ast$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be a language over the alphabet <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">
+
+<UL>
+<LI>recognized by FA and
+</LI>
+<LI>with <I>n</I> residue classes.
+</LI>
+</UL>
+It follows from Proposition&nbsp;<A HREF="node16.html#prop:equiModDeltaImpliesEquivModLanguage">8</A>
+and Theorem&nbsp;<A HREF="node16.html#thrm:FinitelyManyClassesImpliesRational">4</A> that 
+
+<UL>
+<LI>every DFA recognizing <I>L</I> has at least <I>n</I> states,
+</LI>
+<LI>there exists a DFA with <I>n</I> states recognizing <I>L</I>.
+</LI>
+</UL>
+Therefore we can call <EM>minimal automaton</EM> every DFA with <I>n</I> states
+and recognizing <I>L</I>.
+
+<P>
+<P>
+<DIV><B>Remark  5</B> &nbsp; 
+<EM>The number of residue classes of a language is rarely known
+(until one gets a minimal DFA accepting this language).
+So one needs a way to characterize <EM>minimal automata</EM>.
+</EM>
+<P>
+<EM>Then one needs an algorithm to compute from a given DFA (minimal or not) 
+recognizing <I>L</I> a minimal automaton recognizing <I>L</I> too.
+Such an algorithm will group states
+that do <EM>essentially the same job</EM>.
+This leads to the following notions.
+</EM> </DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>E<SMALL>QUIVALENCE OF STATES IN A </SMALL>DFA.</U>  Let <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) be a DFA.
+We say that two states <I>p</I>, <I>q</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> are <EM>equivalent</EM>
+and we write <!-- MATH
+ $p {\equiv} q$
+ -->
+<I>p</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>q</I> if for every word <!-- MATH
+ $w \in {\Sigma}^\ast$
+ -->
+<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> we have
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+({\delta}(p,w) \in F) \iff ({\delta}(q,w) \in F).
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER">(<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>p</I>, <I>w</I>) <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>F</I>)<IMG
+ WIDTH="95" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.png"
+ ALT="$\displaystyle \iff$">(<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>q</I>, <I>w</I>) <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>F</I>).</TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(18)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Let <I>k</I> be a non-negative integer.
+We say that  two states <I>p</I>, <I>q</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> are <EM>equivalent at order</EM> <I>k</I>
+and we write <!-- MATH
+ $p {\equiv}_k q$
+ -->
+<I>p</I> <IMG
+ WIDTH="53" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img96.png"
+ ALT="$ \equiv_{{k}}^{{}}$"> <I>q</I> if for every word <!-- MATH
+ $w \in {\Sigma}^\ast$
+ -->
+<I>w</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> 
+with length <!-- MATH
+ $\mid w \mid$
+ -->
+| <I>w</I> | 
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+\left(\mid w \mid \leq k \right)
+\ \ \ \ \Longrightarrow \ \ \ \
+\left(
+({\delta}(p,w) \in F)  \ \ \iff \ \  ({\delta}(q,w) \in F)
+\right)
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img97.png"
+ ALT="$\displaystyle \left(\vphantom{\mid w \mid \leq k }\right.$"> | <I>w</I> | <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img98.png"
+ ALT="$\displaystyle \leq$"> <I>k</I><IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img99.png"
+ ALT="$\displaystyle \left.\vphantom{\mid w \mid \leq k }\right)$">&nbsp; &nbsp; <IMG
+ WIDTH="67" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img95.png"
+ ALT="$\displaystyle \Longrightarrow$"> &nbsp; &nbsp; <IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img100.png"
+ ALT="$\displaystyle \left(\vphantom{ ({\delta}(p,w) \in F) \ \ \iff \ \ ({\delta}(q,w) \in F) }\right.$">(<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>p</I>, <I>w</I>) <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>F</I>)&nbsp; <IMG
+ WIDTH="95" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img89.png"
+ ALT="$\displaystyle \iff$">&nbsp; (<IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$">(<I>q</I>, <I>w</I>) <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$\displaystyle \in$"> <I>F</I>)<IMG
+ WIDTH="27" HEIGHT="74" ALIGN="MIDDLE" BORDER="0"
+ SRC="img101.png"
+ ALT="$\displaystyle \left.\vphantom{ ({\delta}(p,w) \in F) \ \ \iff \ \ ({\delta}(q,w) \in F) }\right)$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(19)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>C<SMALL>HARACTERIZATION OF A MINIMAL AUTOMATON.</SMALL></U> Among other properties, 
+Theorem&nbsp;<A HREF="node16.html#thrm:CharacterizationOfAMinimalAutomaton">5</A>
+states that for a minimal
+automaton, each residue class of states contains only
+one state.
+<P>
+<DIV><A NAME="thrm:CharacterizationOfAMinimalAutomaton"><B>Theorem  5</B></A> &nbsp; 
+Let  <!-- MATH
+ $L \subseteq {\Sigma}^\ast$
+ -->
+<I>L</I> <IMG
+ WIDTH="38" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ \subseteq$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> be a language recognized by FA 
+and let <I>n</I> be its number of residue classes.
+Let <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) be a minimal DFA
+recognizing <I>L</I>.
+Then we have the following properties
+
+<UL>
+<LI>for every words <!-- MATH
+ $u,v \in {\Sigma}^\ast$
+ -->
+<I>u</I>, <I>v</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$"> we have 
+      <!-- MATH
+ $u \equiv v \mod{\, {\delta}} \ \ \iff \ \ u \equiv v \mod{\, L}$
+ -->
+<I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">&nbsp; <IMG
+ WIDTH="95" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img102.png"
+ ALT="$ \iff$">&nbsp; <I>u</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>v</I> mod&nbsp;<I>L</I>.
+</LI>
+<LI>for every <I>q</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>F</I> there exists a word <!-- MATH
+ $u \in {\Sigma}^\ast$
+ -->
+<I>u</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="49" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img82.png"
+ ALT="$ \Sigma^{{\ast}}_{{}}$">
+      such that <!-- MATH
+ ${\delta}(i,u) = q$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">(<I>i</I>, <I>u</I>) = <I>q</I>.
+</LI>
+<LI>for every states <I>p</I>, <I>q</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> we have <!-- MATH
+ $p {\equiv} q \ \ \iff \ \ p = q.$
+ -->
+<I>p</I> <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> <I>q</I>&nbsp; <IMG
+ WIDTH="95" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img102.png"
+ ALT="$ \iff$">&nbsp; <I>p</I> = <I>q</I>.
+</LI>
+</UL></DIV><P></P>
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>C<SMALL>ONSTRUCTION OF THE EQUIVALENCE CLASSES FOR STATES.</SMALL></U> Proposition&nbsp;<A HREF="node16.html#prop:stabilisationOfResidueClassesForStates">9</A>
+suggests an algorithm for constructing the equivalence classes
+of states.
+<P>
+<DIV><A NAME="prop:stabilisationOfResidueClassesForStates"><B>Proposition  9</B></A> &nbsp; 
+Let <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) be a DFA
+and <I>k</I> be a non-negative integer.
+If the relations <!-- MATH
+ ${\equiv}_k$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img96.png"
+ ALT="$ \equiv_{{k}}^{{}}$"> and <!-- MATH
+ ${\equiv}_{k+1}$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img103.png"
+ ALT="$ \equiv_{{{k+1}}}^{{}}$">
+have the same residue classes
+then <!-- MATH
+ ${\equiv}_k$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img96.png"
+ ALT="$ \equiv_{{k}}^{{}}$"> and <IMG
+ WIDTH="38" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img87.png"
+ ALT="$ \equiv$"> 
+have the same residue classes too.</DIV><P></P>
+The method is follows.
+
+<UL>
+<LI>Compute <!-- MATH
+ ${\equiv}_0$
+ -->
+<IMG
+ WIDTH="52" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img104.png"
+ ALT="$ \equiv_{{0}}^{{}}$"> which consists 
+      of two classes: 
+
+<UL>
+<LI>the set of the final states,
+</LI>
+<LI>the set of the non final states.
+</LI>
+</UL>
+</LI>
+<LI>Compute <!-- MATH
+ ${\equiv}_1$
+ -->
+<IMG
+ WIDTH="52" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img105.png"
+ ALT="$ \equiv_{{1}}^{{}}$"> and set <I>k</I> to 0
+</LI>
+<LI>Whhile <!-- MATH
+ ${\equiv}_k$
+ -->
+<IMG
+ WIDTH="53" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img96.png"
+ ALT="$ \equiv_{{k}}^{{}}$"> and <!-- MATH
+ ${\equiv}_{k+1}$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img103.png"
+ ALT="$ \equiv_{{{k+1}}}^{{}}$"> are different
+      <!-- MATH
+ ${\equiv}_{k+2}$
+ -->
+<IMG
+ WIDTH="86" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img106.png"
+ ALT="$ \equiv_{{{k+2}}}^{{}}$"> and set <I>k</I> to <I>k</I> + 1.
+</LI>
+</UL>
+In practice one construct a table that gives
+the transition from each state after
+reading any word of length 0, any word of length 1, any word of length 2, etc...
+In these tables we underline final states in order to detect classes
+more easily.
+Quite often computations can be simpler.
+For instance,  in Example&nbsp;<A HREF="node16.html#expl:nonMinimalAutomatonAgain">7</A>
+computations can be stopped after computing the third column.  
+Explain why!
+
+<P>
+
+<P>
+<BR>
+
+<P>
+<U>T<SMALL>HE CONSTRUCTION OF A MINIMAL AUTOMATON</SMALL></U>    <!-- MATH
+ $\overline{{\cal A}}=({\Sigma},S', i', F',{\delta}')$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="43" ALIGN="BOTTOM" BORDER="0"
+ SRC="img18.png"
+ ALT="$ \overline{{{\cal A}}}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S'</I>, <I>i'</I>, <I>F'</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"><SUP><IMG
+ WIDTH="17" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img107.png"
+ ALT="$\scriptstyle \prime$"></SUP>)
+from a given DFA <!-- MATH
+ ${\cal A}=({\Sigma},S,i,F,\delta)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img7.png"
+ ALT="$ \cal {A}$"> = (<IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">, <I>S</I>, <I>i</I>, <I>F</I>,<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$">) can be down as follows
+(where the class of a state <I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> is denoted by <!-- MATH
+ $\overline{s}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \overline{{s}}$">).
+
+<UL>
+<LI>Compute the equivalence classes of states.
+      From Theorem&nbsp;<A HREF="node16.html#thrm:CharacterizationOfAMinimalAutomaton">5</A>
+      they provide <I>S'</I>, also denoted by <!-- MATH
+ $\overline{S}$
+ -->
+<IMG
+ WIDTH="33" HEIGHT="45" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ \overline{{S}}$">.
+</LI>
+<LI>Let <!-- MATH
+ $s, s' \in S$
+ -->
+<I>s</I>, <I>s'</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>S</I> such that <!-- MATH
+ $\overline{s} = \overline{s'}$
+ -->
+<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \overline{{s}}$"> = <IMG
+ WIDTH="35" HEIGHT="44" ALIGN="BOTTOM" BORDER="0"
+ SRC="img108.png"
+ ALT="$ \overline{{s'}}$">.
+      Let <!-- MATH
+ $x \in {\Sigma}$
+ -->
+<I>x</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <IMG
+ WIDTH="35" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img2.png"
+ ALT="$ \Sigma$">.
+      We have <!-- MATH
+ $\overline{{\delta}(s,x)} = \overline{{\delta}(s',x)}$
+ -->
+<IMG
+ WIDTH="106" HEIGHT="88" ALIGN="MIDDLE" BORDER="0"
+ SRC="img109.png"
+ ALT="$ \overline{{{\delta}(s,x)}}$"> = <IMG
+ WIDTH="115" HEIGHT="88" ALIGN="MIDDLE" BORDER="0"
+ SRC="img110.png"
+ ALT="$ \overline{{{\delta}(s',x)}}$">.
+      Hence we can define <!-- MATH
+ ${{\delta}'}(\overline{s},x)$
+ -->
+<IMG
+ WIDTH="27" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ \delta$"><SUP><IMG
+ WIDTH="17" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img107.png"
+ ALT="$\scriptstyle \prime$"></SUP>(<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \overline{{s}}$">, <I>x</I>) as
+<P></P>
+<DIV ALIGN="CENTER"><!-- MATH
+ \begin{equation}
+{{\delta}'}(\overline{s},x) \ = \ \overline{{\delta}(s',x)}
+\end{equation}
+ -->
+<TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="BASELINE">
+<TD NOWRAP ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="70" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$\displaystyle \delta$"><SUP><IMG
+ WIDTH="17" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img107.png"
+ ALT="$\scriptstyle \prime$"></SUP>(<IMG
+ WIDTH="26" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img111.png"
+ ALT="$\displaystyle \overline{{s}}$">, <I>x</I>)&nbsp; = &nbsp;<IMG
+ WIDTH="115" HEIGHT="88" ALIGN="MIDDLE" BORDER="0"
+ SRC="img112.png"
+ ALT="$\displaystyle \overline{{{\delta}(s',x)}}$"></TD>
+<TD NOWRAP WIDTH="10" ALIGN="RIGHT">
+(20)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+</LI>
+<LI>We choose <!-- MATH
+ $i'\ = \ \overline{i}$
+ -->
+<I>i'</I>&nbsp; = &nbsp;<IMG
+ WIDTH="22" HEIGHT="44" ALIGN="BOTTOM" BORDER="0"
+ SRC="img113.png"
+ ALT="$ \overline{{i}}$">.
+</LI>
+<LI>We define <!-- MATH
+ $F' \ = \ \{ \overline{s} \ \mid \ s \in F \}$
+ -->
+<I>F'</I>&nbsp; = &nbsp;{<IMG
+ WIDTH="26" HEIGHT="37" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \overline{{s}}$">&nbsp; | &nbsp;<I>s</I> <IMG
+ WIDTH="34" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \in$"> <I>F</I>}.
+</LI>
+</UL>
+
+<P>
+<P>
+<DIV><A NAME="expl:nonMinimalAutomatonAgain"><B>Example  7</B></A> &nbsp; 
+
+<DIV ALIGN="CENTER"><A NAME="fig:nonMinimalAutomatonAgain"></A><A NAME="1299"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 21:</STRONG>
+A DFA whith three classes of equivalence.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1105" HEIGHT="302" BORDER="0"
+ SRC="img94.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{nonMinimalAutomaton.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{ccccccc}
+\varepsilon     &     a          &   b           &   aa    &     ab        &   ba          &    bb \\
+1               &     2          &   1           &   2     &      1        &    2           &   1            \\
+2               &     2          & \underline{3} &   2     & \underline{3} & \underline{4} &  \underline{3}   \\
+\underline{3}   & \underline{4}  & \underline{3} &\underline{4}&\underline{4}&\underline{4} & \underline{3} \\
+\underline{4}   & \underline{4}  & \underline{3} &\underline{4}&\underline{4}&\underline{4} & \underline{3} \\
+\end{array}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<TABLE>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER"><IMG
+ WIDTH="26" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$\displaystyle \varepsilon$"></TD>
+<TD ALIGN="CENTER"><I>a</I></TD>
+<TD ALIGN="CENTER"><I>b</I></TD>
+<TD ALIGN="CENTER"><I>aa</I></TD>
+<TD ALIGN="CENTER"><I>ab</I></TD>
+<TD ALIGN="CENTER"><I>ba</I></TD>
+<TD ALIGN="CENTER"><I>bb</I></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">1</TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img115.png"
+ ALT="$\displaystyle \underline{{4}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+</TR>
+</TABLE>
+</DIV><P></P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:minimizedAutomaton"></A><A NAME="1325"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 22:</STRONG>
+Minized automaton.</CAPTION>
+<TR><TD><IMG
+ WIDTH="785" HEIGHT="287" BORDER="0"
+ SRC="img116.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.5]{minizedAutomaton.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+</DIV><P></P>
+
+<P>
+<P>
+<DIV><B>Example  8</B> &nbsp; 
+<!-- MATH
+ \begin{displaymath}
+\begin{array}{ccccccc}
+\varepsilon     &     a          &   b           &   aa    &     ab        &   ba          &    bb \\
+1               &     2          &   6           &   7     & \underline{3} & \underline{3} &   7            \\
+2               &     7          & \underline{3} &         &               &                &         \\
+\underline{3}   &     1          & \underline{3} &   2     &   6           &     1          & \underline{3} \\
+5               &     8          &   6           &     7   & \underline{3} & \underline{3}  &   7           \\
+6               &  \underline{3} &   7           &     1   & \underline{3} &     7          & \underline{3} \\
+7               &     7          &   5           &     7   &   5           &     8          &   6           \\
+8               &     7          & \underline{3} &         &               &                &    \\
+\end{array}
+\end{displaymath}
+ -->
+<P></P>
+<DIV ALIGN="CENTER">
+<TABLE>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER"><IMG
+ WIDTH="26" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$\displaystyle \varepsilon$"></TD>
+<TD ALIGN="CENTER"><I>a</I></TD>
+<TD ALIGN="CENTER"><I>b</I></TD>
+<TD ALIGN="CENTER"><I>aa</I></TD>
+<TD ALIGN="CENTER"><I>ab</I></TD>
+<TD ALIGN="CENTER"><I>ba</I></TD>
+<TD ALIGN="CENTER"><I>bb</I></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">6</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">7</TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">2</TD>
+<TD ALIGN="CENTER">6</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">5</TD>
+<TD ALIGN="CENTER">8</TD>
+<TD ALIGN="CENTER">6</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">7</TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">6</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER">1</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER">5</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER">5</TD>
+<TD ALIGN="CENTER">8</TD>
+<TD ALIGN="CENTER">6</TD>
+</TR>
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER">8</TD>
+<TD ALIGN="CENTER">7</TD>
+<TD ALIGN="CENTER"><IMG
+ WIDTH="27" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img114.png"
+ ALT="$\displaystyle \underline{{3}}$"></TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV><P></P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:nonMinimalAutomaton2"></A><A NAME="1347"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 23:</STRONG>
+Another DFA to minize.</CAPTION>
+<TR><TD><IMG
+ WIDTH="956" HEIGHT="773" BORDER="0"
+ SRC="img117.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.6]{nonMinimalAutomaton2.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+
+<DIV ALIGN="CENTER"><A NAME="fig:minimizedAutomaton2"></A><A NAME="1352"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 24:</STRONG>
+Minized Automaton.</CAPTION>
+<TR><TD><IMG
+ WIDTH="1048" HEIGHT="1405" BORDER="0"
+ SRC="img118.png"
+ ALT="\begin{figure}\htmlimage
+\centering\includegraphics[scale=.6]{minizedAutomaton2.eps}
+\end{figure}"></TD></TR>
+</TABLE>
+</DIV>
+</DIV><P></P>
+
+<P>
+<HR>
+<A NAME="tex2html213"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html211"
+  HREF="node15.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html207"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html214"
+  HREF="node17.html">About this document ...</A>
+<B>Up:</B> <A NAME="tex2html212"
+  HREF="node15.html">The design of an efficient</A>
+<B> Previous:</B> <A NAME="tex2html208"
+  HREF="node15.html">The design of an efficient</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>

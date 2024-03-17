@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with jLaTeX2HTML 2002 (1.62) JA patch-1.4
+patched version by:  Kenshi Muto, Debian Project.
+LaTeX2HTML 2002 (1.62),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The design of an efficient lexical analyzer</TITLE>
+<META NAME="description" CONTENT="The design of an efficient lexical analyzer">
+<META NAME="keywords" CONTENT="Lexical">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-1">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2002 JA patch-1.4">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="Lexical.css">
+
+<LINK REL="previous" HREF="node14.html">
+<LINK REL="up" HREF="node8.html">
+<LINK REL="next" HREF="node16.html">
+</HEAD>
+
+<BODY >
+
+<A NAME="tex2html204"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html198"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html205"
+  HREF="node16.html">Minimal automaton</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="node8.html">Lexical Analysis</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node14.html">The role of the lexical</A>
+<BR> <P>
+
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00023000000000000000">
+The design of an efficient lexical analyzer</A>
+</H2>  When building an automaton from a regular expression <I>r</I>
+(of length <!-- MATH
+ $\mid r \mid$
+ -->
+| <I>r</I> |)  two options at least are possible.
+
+<UL>
+<LI>Apply Thompson's algorithm to build a NFAIT.
+      Then the number of states is <!-- MATH
+ ${\cal O}(\mid r \mid)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img44.png"
+ ALT="$ \cal {O}$">( | <I>r</I> | ).
+</LI>
+<LI>Apply Thompson's algorithm and the subset algorithm
+      to build a DFA.
+      Then the number of states is <!-- MATH
+ ${\cal O}(2^{\mid r \mid})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img44.png"
+ ALT="$ \cal {O}$">(2<SUP> | r | </SUP>).
+</LI>
+</UL>
+Now given a word <I>w</I> of length <IMG
+ WIDTH="24" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ \ell$"> deciding whether
+<I>w</I> is a member of <I>L</I>(<I>r</I>) (the language denoted by <I>r</I>)
+will cost
+
+<UL>
+<LI><!-- MATH
+ ${\cal O}({\ell} \, \mid r \mid)$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img44.png"
+ ALT="$ \cal {O}$">(<IMG
+ WIDTH="24" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ \ell$">&nbsp; | <I>r</I> | ) with the NFAIT and 
+</LI>
+<LI><!-- MATH
+ ${\cal O}({\ell})$
+ -->
+<IMG
+ WIDTH="39" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img44.png"
+ ALT="$ \cal {O}$">(<IMG
+ WIDTH="24" HEIGHT="38" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ \ell$">) with the DFA.
+</LI>
+</UL>
+We present now a method that minimizes the number
+of states of a DFA. So this method applies to improve
+the second option.
+
+<P>
+<BR> <HR>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL>
+<LI><A NAME="tex2html206"
+  HREF="node16.html">Minimal automaton</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+<A NAME="tex2html204"
+  HREF="node16.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="node8.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html198"
+  HREF="node14.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html205"
+  HREF="node16.html">Minimal automaton</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="node8.html">Lexical Analysis</A>
+<B> Previous:</B> <A NAME="tex2html199"
+  HREF="node14.html">The role of the lexical</A>
+
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Marc Moreno Maza <BR>
+2004-12-02</I>
+</ADDRESS>
+</BODY>
+</HTML>
