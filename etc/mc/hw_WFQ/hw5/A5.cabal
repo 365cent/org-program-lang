@@ -1,0 +1,36 @@
+cabal-version:      3.0
+name:               a5
+version:            0.1.0
+-- synopsis:
+-- description:
+license:            BSD-3-Clause
+-- license-file:       LICENSE
+author:             Faquan Wang
+maintainer:         wangf69@mcmaste.ca
+-- copyright:
+build-type:         Simple
+-- extra-doc-files:    CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall -Wno-name-shadowing
+
+library
+    import:           warnings
+    exposed-modules:
+      A5
+    build-depends:
+      base ^>=4.19.0.0,
+      containers >= 0.6.0.0
+    default-language: GHC2021
+
+test-suite A5-test
+    import:           warnings
+    default-language: GHC2021
+    type:             exitcode-stdio-1.0
+    main-is:          A5test.hs
+    other-modules:
+      A5
+    build-depends:
+        a5,
+        base ^>=4.19.0.0,
+        HUnit ^>=1.6

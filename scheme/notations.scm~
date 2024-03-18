@@ -1,0 +1,12 @@
+#lang scheme
+
+; Comments begin with a semi-colon
+; Clicking "Run in Dr Racket will evaluate your program
+
+; Lieterals
+"Hello, World" ; String
+10             ; Integer
+3.14           ; Real
+'HelloWorld    ; Symbol
+
+; Scheme uses prefix notation: the operator coems first
