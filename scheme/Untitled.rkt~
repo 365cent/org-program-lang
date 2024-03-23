@@ -1,0 +1,16 @@
+#lang scheme
+(define lcs
+  (lambda args
+    (map (lambda (lst)
+    (define (sub-lcs lst)
+      (if (null? lst)
+         '()
+            (append (equal? (car lst) (sub-lcs (cdr lst)))
+          )
+      )
+    )
+      (sub-lcs lst))
+     args)
+  )
+)
+(lcs '(1) '(1 2 3))
